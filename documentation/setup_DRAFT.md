@@ -68,7 +68,12 @@ $ choco install intellijidea-ultimate
 
 ### Run Ease application in IntelliJ IDEA
 
-(none)
+``` shell
+$ npm install
+$ npm start
+```
+
+
 
 ## Troubleshoot
 
