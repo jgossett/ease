@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {faPlayCircle, faRedo, faEllipsisV, faPause} from '@fortawesome/free-solid-svg-icons';
+import {faPlayCircle, faRedo, faEllipsisV, faPause, faCircle} from '@fortawesome/free-solid-svg-icons';
 import {faCircle as farCircle} from '@fortawesome/free-regular-svg-icons';
 
 @Component({
@@ -11,8 +11,8 @@ export class AppComponent {
   fasRedo = faRedo;
   fasEllipsis = faEllipsisV;
   fasPlayCircle = faPlayCircle;
-  // farCircle = faCircle;
-  // farCircle = farCircle;
+  fasCircle = faCircle;
+  farCircle = farCircle;
   fasPause = faPause;
 
   onRestartTimer(): void {

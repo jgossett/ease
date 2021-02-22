@@ -11,5 +11,5 @@
 - Create animations.
 - Create installer.
 - Embedded in Electronic applications.
-- 
+- Create half fill circle.
 
