@@ -1,12 +1,16 @@
 <!-- header -->
 <header>
-  🔃 ⁝
+  <!-- restart timer -->
+  <fa-icon [icon]="fasRedo" (click)="onRestartTimer()"></fa-icon>
+
+  <!-- show settings menu -->
+  <fa-icon [icon]="fasEllipsis" (click)="onShowSettingMenu()"></fa-icon>
 </header>
 
 <!-- body -->
 <body>
   <!-- application name -->
-  <h3>Flow</h3>
+  <h3>Ease</h3>
 
   <!-- timer -->
   <section>
@@ -23,12 +27,14 @@
 
   <!-- sessions -->
   <section>
-    ••••
+<!--    <fa-icon icon="[faCircle]"></fa-icon>-->
+<!--    <fa-icon icon="[farCircle]"></fa-icon>-->
   </section>
 
   <!-- actions -->
   <section>
-    ▶
+    <fa-icon [icon]="fasPlayCircle" (click)="onStartTimer()"></fa-icon>
+    <fa-icon [icon]="fasPause" (click)="onPauseTimer()"></fa-icon>
   </section>
 </body>
 
