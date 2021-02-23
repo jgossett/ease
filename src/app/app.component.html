@@ -1,46 +1,65 @@
 <!-- header -->
-<header>
+<header class="text-right text-sm gray-800 p-1">
   <!-- restart timer -->
-  <fa-icon [icon]="fasRedo" (click)="onRestartTimer()"></fa-icon>
+  <fa-icon (click)="onRestartTimer()"
+           [icon]="fasRedo"
+           class="px-1">
+  </fa-icon>
 
   <!-- show settings menu -->
-  <fa-icon [icon]="fasEllipsis" (click)="onShowSettingMenu()"></fa-icon>
+  <fa-icon (click)="onShowSettingMenu()"
+           [icon]="fasEllipsis"
+           class="px-1">
+  </fa-icon>
 </header>
 
 <!-- body -->
-<body>
+<body class="text-center text py-2">
   <!-- application name -->
-  <h3>Ease</h3>
+  <h3 class="text-md font-semibold">Ease</h3>
 
   <!-- timer -->
-  <section>
-    <h1>
-      <!-- minutes -->
-      <span>
-        23
-      </span>
-      :
-      <!-- seconds -->
-      <span>
-        47
-      </span>
+  <section class="p-1">
+    <h1 class="text-8xl font-thin">
+      {{ minutes }}:{{seconds}}
     </h1>
   </section>
 
   <!-- sessions -->
-  <section>
-    <fa-icon [icon]="fasCircle"></fa-icon>
-    <fa-icon [icon]="farCircle"></fa-icon>
+  <section class="text-xs p-1">
+    <fa-icon [icon]="fasCircle"
+             class="p-0.5">
+    </fa-icon>
+
+    <fa-icon [icon]="farCircle"
+             class="p-0.5">
+    </fa-icon>
+
+    <fa-icon [icon]="farCircle"
+             class="p-0.5">
+    </fa-icon>
+
+    <fa-icon [icon]="farCircle"
+             class="p-0.5">
+    </fa-icon>
   </section>
 
-  <!-- actions -->
-  <section>
-    <fa-icon [icon]="fasPlayCircle" (click)="onStartTimer()"></fa-icon>
-    <fa-icon [icon]="fasPause" (click)="onPauseTimer()"></fa-icon>
+  <!-- action panel -->
+  <section class="text-4xl p-1">
+    <!-- play button -->
+    <fa-icon (click)="onStartTimer()"
+             [icon]="fasPlayCircle"
+             class="text-green-600">
+    </fa-icon>
+
+    <!-- pause button -->
+    <fa-icon (click)="onPauseTimer()"
+             [icon]="fasPause"
+             class="text-green-600">
+    </fa-icon>
   </section>
 </body>
 
 <!-- footer -->
-<footer>
-
+<footer class="p-1">
 </footer>

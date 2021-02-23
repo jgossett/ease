@@ -8,12 +8,15 @@ import {faCircle as farCircle} from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  fasRedo = faRedo;
-  fasEllipsis = faEllipsisV;
-  fasPlayCircle = faPlayCircle;
-  fasCircle = faCircle;
-  farCircle = farCircle;
-  fasPause = faPause;
+  readonly fasRedo = faRedo;
+  readonly fasEllipsis = faEllipsisV;
+  readonly fasPlayCircle = faPlayCircle;
+  readonly fasCircle = faCircle;
+  readonly farCircle = farCircle;
+  readonly fasPause = faPause;
+
+  minutes = 23;
+  seconds = 47;
 
   onRestartTimer(): void {
     alert('onRestartTimer was clicked.');
