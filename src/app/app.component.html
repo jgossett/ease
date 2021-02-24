@@ -1,7 +1,7 @@
 <!-- header -->
 <header class="text-right text-sm text-gray-600 p-1">
   <!-- restart timer -->
-  <fa-icon (click)="onRestartTimer()"
+  <fa-icon (click)="onReset()"
            [icon]="fasRedo"
            class="px-1">
   </fa-icon>
@@ -49,19 +49,19 @@
   <!-- action panel -->
   <section class="text-4xl p-1">
     <!-- play button -->
-    <fa-icon (click)="onStartTimer()"
+    <fa-icon (click)="onStart()"
              [icon]="fasPlayCircle"
              class="text-green-600 px-1">
     </fa-icon>
 
     <!-- pause button -->
-    <fa-icon (click)="onPauseTimer()"
+    <fa-icon (click)="onPause()"
              [icon]="fasPause"
              class="text-green-600 px-1">
     </fa-icon>
 
     <!-- stop button -->
-    <fa-icon (click)="onStopTimer()"
+    <fa-icon (click)="onStop()"
              [icon]="fasStop"
              class="text-green-600 px-1">
     </fa-icon>

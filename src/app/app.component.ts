@@ -15,7 +15,7 @@ export class AppComponent {
   readonly fasCircle = faCircle;
   readonly farCircle = farCircle;
   readonly fasPause = faPause;
-  readonly fasStop = faStop
+  readonly fasStop = faStop;
 
   private timerMachine = new TimerMachine();
 
@@ -27,23 +27,23 @@ export class AppComponent {
     return this.timerMachine.seconds;
   }
 
-  onRestartTimer(): void {
-    alert('onRestartTimer was clicked.');
+  onReset(): void {
+    this.timerMachine.abort();
   }
 
   onShowSettingMenu(): void {
     alert('onShowSettingMenu was clicked.');
   }
 
-  onStartTimer(): void {
-    alert('onStartTimer was clicked.');
+  onStart(): void {
+    this.timerMachine.work();
   }
 
-  onPauseTimer(): void {
-    alert('onPauseTimer was clicked.');
+  onPause(): void {
+    this.timerMachine.pause();
   }
 
-  onStopTimer(): void {
-    alert('onStopTimer was clicked.');
+  onStop(): void {
+    this.timerMachine.abort();
   }
 }
