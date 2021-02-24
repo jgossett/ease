@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {faPlayCircle, faRedo, faEllipsisV, faPause, faCircle} from '@fortawesome/free-solid-svg-icons';
+import {faPlayCircle, faRedo, faEllipsisV, faPause, faCircle, faStop} from '@fortawesome/free-solid-svg-icons';
 import {faCircle as farCircle} from '@fortawesome/free-regular-svg-icons';
+import {TimerMachine} from './state-machine.class';
 
 @Component({
   selector: 'app-root',
@@ -14,9 +15,17 @@ export class AppComponent {
   readonly fasCircle = faCircle;
   readonly farCircle = farCircle;
   readonly fasPause = faPause;
+  readonly fasStop = faStop
 
-  minutes = 23;
-  seconds = 47;
+  private timerMachine = new TimerMachine();
+
+  get minutes(): number {
+    return this.timerMachine.minutes;
+  }
+
+  get seconds(): number {
+    return this.timerMachine.seconds;
+  }
 
   onRestartTimer(): void {
     alert('onRestartTimer was clicked.');
@@ -32,5 +41,9 @@ export class AppComponent {
 
   onPauseTimer(): void {
     alert('onPauseTimer was clicked.');
+  }
+
+  onStopTimer(): void {
+    alert('onStopTimer was clicked.');
   }
 }
