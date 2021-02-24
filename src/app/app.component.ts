@@ -27,6 +27,18 @@ export class AppComponent {
     return this.timerMachine.seconds;
   }
 
+  get showPauseButton(): boolean {
+    return this.timerMachine.showPauseButton;
+  }
+
+  get showPlayButton(): boolean {
+    return this.timerMachine.showPlayButton;
+  }
+
+  get showStopButton(): boolean {
+    return this.timerMachine.showStopButton;
+  }
+
   onReset(): void {
     this.timerMachine.abort();
   }

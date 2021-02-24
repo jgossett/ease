@@ -50,18 +50,21 @@
   <section class="text-4xl p-1">
     <!-- play button -->
     <fa-icon (click)="onStart()"
+             *ngIf="showPlayButton"
              [icon]="fasPlayCircle"
              class="text-green-600 px-1">
     </fa-icon>
 
     <!-- pause button -->
     <fa-icon (click)="onPause()"
+             *ngIf="showPauseButton"
              [icon]="fasPause"
              class="text-green-600 px-1">
     </fa-icon>
 
     <!-- stop button -->
     <fa-icon (click)="onStop()"
+             *ngIf="showStopButton"
              [icon]="fasStop"
              class="text-green-600 px-1">
     </fa-icon>

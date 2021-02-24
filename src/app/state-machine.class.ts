@@ -7,29 +7,20 @@ import {ReadyState} from './ready-state.class';
 import {WelcomeState} from './welcome-state.class';
 
 export class TimerMachine {
-  minutes: number;
-  seconds: number;
-  showPlayButton: boolean;
-  showPauseButton: boolean;
-  showStopButton: boolean;
+  minutes = 25;
+  seconds = 0;
+  showPlayButton = true;
+  showPauseButton = false;
+  showStopButton = false;
 
-  protected state;
+  readonly welcomeState: TimerState = new WelcomeState(this);
+  readonly workState: TimerState = new WorkState(this);
+  readonly restState: TimerState = new RestState(this);
+  readonly pauseState: TimerState = new PauseState(this);
+  readonly abortState: TimerState = new AbortState(this);
+  readonly readyState: TimerState = new ReadyState(this);
 
-  private readonly welcomeState: TimerState = new WelcomeState(this);
-  private readonly workState: TimerState = new WorkState(this);
-  private readonly restState: TimerState = new RestState(this);
-  private readonly pauseState: TimerState = new PauseState(this);
-  private readonly abortState: TimerState = new AbortState(this);
-  private readonly readyState: TimerState = new ReadyState(this);
-
-  constructor() {
-    this.state = this.welcomeState;
-    this.welcome();
-  }
-
-  welcome(): void {
-    this.state.welcome();
-  }
+  state: TimerState = this.welcomeState;
 
   work(): void {
     this.state.work();

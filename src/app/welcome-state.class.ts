@@ -1,4 +1,5 @@
 import {TimerState} from './timer-state.class';
+import {timer} from 'rxjs';
 
 /**
  * The user first starts the application.
@@ -8,11 +9,13 @@ export class WelcomeState extends TimerState {
     return 'Welcome';
   }
 
-  welcome(): void {
+  work(): void {
     this.timerMachine.minutes = 25;
     this.timerMachine.seconds = 0;
-    this.timerMachine.showPlayButton = true;
-    this.timerMachine.showPauseButton = false;
-    this.timerMachine.showStopButton = false;
+    this.timerMachine.showPauseButton = true;
+    this.timerMachine.showPlayButton = false;
+    this.timerMachine.showStopButton = true;
+
+    this.timerMachine.state = this.timerMachine.workState;
   }
 }
