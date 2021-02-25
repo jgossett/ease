@@ -19,8 +19,7 @@ export class RestState extends State {
   }
 
   ready(): void {
-    this.timerMachine.everySecondSubscription.unsubscribe();
-    this.timerMachine.$everySecond = undefined;
+    this.timerMachine.timer.stop();
 
     this.timerMachine.showPauseButton = false;
     this.timerMachine.showPlayButton = true;

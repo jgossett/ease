@@ -1,19 +1,17 @@
-import {State} from './states/state.class';
-import {FocusState} from './states/work-state.class';
-import {RestState} from './states/rest-state.class';
-import {PauseState} from './states/pause-state.state';
-import {ResetState} from './states/abort-state.class';
-import {ReadyState} from './states/ready-state.class';
-import {Observable, Subscription} from 'rxjs';
-import { Duration } from 'luxon';
 import { cloneDeep } from 'lodash-es';
+import { Duration } from 'luxon';
+import { ResetState } from './states/abort-state.class';
+import { PauseState } from './states/pause-state.state';
+import { ReadyState } from './states/ready-state.class';
+import { RestState } from './states/rest-state.class';
+import { State } from './states/state.class';
+import { FocusState } from './states/focus-state.class';
+import { Timer } from './timer.class';
 
 export class TimerMachine {
   restDuration = Duration.fromISOTime('00:00:15');
   workDuration = Duration.fromISOTime('00:00:30');
   remainingDuration = cloneDeep(this.workDuration);
-
-  $everySecond: Observable<number>;
 
   showPlayButton = true;
   showPauseButton = false;
@@ -26,7 +24,8 @@ export class TimerMachine {
   readonly readyState: State = new ReadyState(this);
 
   state: State = this.readyState;
-  everySecondSubscription: Subscription;
+
+  timer = new Timer(() => this.everySecond());
 
   focus(): void {
     this.state.focus();
@@ -52,4 +51,3 @@ export class TimerMachine {
     this.state.everySecond();
   }
 }
-
