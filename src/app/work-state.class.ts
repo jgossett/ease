@@ -6,7 +6,7 @@ import { ONE_SECOND, ZERO_DURATION } from './values';
 /**
  * The user focuses on work without distractions.
  */
-export class FocusedState extends TimerState {
+export class FocusState extends TimerState {
   protected get name(): string {
     return 'Work';
   }

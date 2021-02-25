@@ -22,6 +22,6 @@ export class ReadyState extends TimerState {
       this.timerMachine.everySecond();
     });
 
-    this.timerMachine.state = this.timerMachine.workState;
+    this.timerMachine.state = this.timerMachine.focusState;
   }
 }

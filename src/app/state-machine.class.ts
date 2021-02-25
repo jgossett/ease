@@ -1,5 +1,5 @@
 import {TimerState} from './timer-state.class';
-import {FocusedState} from './work-state.class';
+import {FocusState} from './work-state.class';
 import {RestState} from './rest-state.class';
 import {PauseState} from './pause-state.state';
 import {AbortState} from './abort-state.class';
@@ -19,7 +19,7 @@ export class TimerMachine {
   showPauseButton = false;
   showStopButton = false;
 
-  readonly workState: TimerState = new FocusedState(this);
+  readonly focusState: TimerState = new FocusState(this);
   readonly restState: TimerState = new RestState(this);
   readonly pauseState: TimerState = new PauseState(this);
   readonly abortState: TimerState = new AbortState(this);
