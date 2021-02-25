@@ -1,8 +1,8 @@
-import {TimerMachine} from './state-machine.class';
+import { TimerMachine } from '../state-machine.class';
 
-export abstract class TimerState {
+export abstract class State {
   /**
-   * Gets the state's name. (e.g. work)
+   * Gets the state's name. (e.g. focus)
    * @protected
    */
   protected abstract get name(): string
@@ -10,11 +10,7 @@ export abstract class TimerState {
   constructor(protected timerMachine: TimerMachine) {
   }
 
-  welcome(): void {
-    this.methodNotSupported('welcome');
-  }
-
-  work(): void {
+  focus(): void {
     this.methodNotSupported('work');
   }
 
@@ -26,7 +22,7 @@ export abstract class TimerState {
     this.methodNotSupported('pause');
   }
 
-  abort(): void {
+  reset(): void {
     this.methodNotSupported('abort');
   }
 

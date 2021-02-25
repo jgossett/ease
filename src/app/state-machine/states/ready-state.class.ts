@@ -1,17 +1,17 @@
 import { cloneDeep } from 'lodash';
 import { timer } from 'rxjs';
-import { TimerState } from './timer-state.class';
-import { ONE_SECOND } from './values';
+import { State } from './state.class';
+import { ONE_SECOND } from '../../values';
 
 /**
  * The user is preparing to work.
  */
-export class ReadyState extends TimerState {
+export class ReadyState extends State {
   protected get name(): string {
     return 'Ready';
   }
 
-  work(): void {
+  focus(): void {
     this.timerMachine.remainingDuration = cloneDeep(this.timerMachine.workDuration);
     this.timerMachine.showPauseButton = true;
     this.timerMachine.showPlayButton = false;

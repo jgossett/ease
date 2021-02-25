@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {faPlayCircle, faRedo, faEllipsisV, faPause, faCircle, faStop} from '@fortawesome/free-solid-svg-icons';
 import {faCircle as farCircle} from '@fortawesome/free-regular-svg-icons';
-import {TimerMachine} from './state-machine.class';
+import {TimerMachine} from './state-machine/state-machine.class';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +40,7 @@ export class AppComponent {
   }
 
   onReset(): void {
-    this.timerMachine.abort();
+    this.timerMachine.reset();
   }
 
   onShowSettingMenu(): void {
@@ -48,7 +48,7 @@ export class AppComponent {
   }
 
   onStart(): void {
-    this.timerMachine.work();
+    this.timerMachine.focus();
   }
 
   onPause(): void {
@@ -56,6 +56,6 @@ export class AppComponent {
   }
 
   onStop(): void {
-    this.timerMachine.abort();
+    this.timerMachine.reset();
   }
 }

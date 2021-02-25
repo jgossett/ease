@@ -1,12 +1,12 @@
 import { cloneDeep } from 'lodash-es';
 import { timer } from 'rxjs';
-import { TimerState } from './timer-state.class';
-import { ONE_SECOND, ZERO_DURATION } from './values';
+import { State } from './state.class';
+import { ONE_SECOND, ZERO_DURATION } from '../../values';
 
 /**
  * The user focuses on work without distractions.
  */
-export class FocusState extends TimerState {
+export class FocusState extends State {
   protected get name(): string {
     return 'Work';
   }

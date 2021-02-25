@@ -1,10 +1,10 @@
-import { TimerState } from './timer-state.class';
-import { ZERO_DURATION } from './values';
+import { State } from './state.class';
+import { ZERO_DURATION } from '../../values';
 
 /**
  * The user should rest without thinking about the work.
  */
-export class RestState extends TimerState {
+export class RestState extends State {
   protected get name(): string {
     return 'Rest';
   }
