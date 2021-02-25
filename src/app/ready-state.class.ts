@@ -1,24 +1,23 @@
-import {TimerState} from './timer-state.class';
-import {timer} from 'rxjs';
-import {MILLISECONDS_PER_SECOND} from './values';
+import { cloneDeep } from 'lodash';
+import { timer } from 'rxjs';
+import { TimerState } from './timer-state.class';
+import { ONE_SECOND } from './values';
 
 /**
- * User is ready to start another interval.
+ * The user is preparing to work.
  */
 export class ReadyState extends TimerState {
-    protected get name(): string {
-      return 'Ready';
-    }
+  protected get name(): string {
+    return 'Ready';
+  }
 
   work(): void {
-    this.timerMachine.minutes = 25;
-    this.timerMachine.seconds = 0;
+    this.timerMachine.remainingDuration = cloneDeep(this.timerMachine.workDuration);
     this.timerMachine.showPauseButton = true;
     this.timerMachine.showPlayButton = false;
     this.timerMachine.showStopButton = true;
 
-    this.timerMachine.timerDurationSeconds = 0;
-    this.timerMachine.$everySecond = timer(MILLISECONDS_PER_SECOND, MILLISECONDS_PER_SECOND);
+    this.timerMachine.$everySecond = timer(ONE_SECOND, ONE_SECOND);
     this.timerMachine.everySecondSubscription = this.timerMachine.$everySecond.subscribe(_ => {
       this.timerMachine.everySecond();
     });

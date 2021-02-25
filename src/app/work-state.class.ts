@@ -1,21 +1,21 @@
-import {TimerState} from './timer-state.class';
-import {MILLISECONDS_PER_SECOND, SECONDS_PER_MINUTE} from './values';
-import {timer} from 'rxjs';
+import { cloneDeep } from 'lodash-es';
+import { timer } from 'rxjs';
+import { TimerState } from './timer-state.class';
+import { ONE_SECOND, ZERO_DURATION } from './values';
 
 /**
- * The user should be focused and working on a single task.
+ * The user focuses on work without distractions.
  */
-export class WorkState extends TimerState {
+export class FocusedState extends TimerState {
   protected get name(): string {
     return 'Work';
   }
 
   everySecond(): void {
-    this.timerMachine.timerDurationSeconds++;
-    const remainingSeconds = this.timerMachine.workDurationSeconds - this.timerMachine.timerDurationSeconds;
-    this.updateMinutesAndSeconds(remainingSeconds);
+    this.timerMachine.remainingDuration = this.timerMachine.remainingDuration.minus({seconds: 1});
 
-    if (remainingSeconds === 0) {
+    const isTimerExpired = this.timerMachine.remainingDuration.equals(ZERO_DURATION);
+    if (isTimerExpired) {
       this.timerMachine.rest();
     }
   }
@@ -23,19 +23,12 @@ export class WorkState extends TimerState {
   rest(): void {
     this.timerMachine.everySecondSubscription.unsubscribe();
 
-    this.timerMachine.timerDurationSeconds = 0;
-    const remainingSeconds = this.timerMachine.restDurationSeconds - this.timerMachine.timerDurationSeconds;
-    this.updateMinutesAndSeconds(remainingSeconds);
+    this.timerMachine.remainingDuration = cloneDeep(this.timerMachine.restDuration);
 
-    this.timerMachine.$everySecond = timer(MILLISECONDS_PER_SECOND, MILLISECONDS_PER_SECOND);
+    this.timerMachine.$everySecond = timer(ONE_SECOND, ONE_SECOND);
     this.timerMachine.everySecondSubscription = this.timerMachine.$everySecond.subscribe(_ => {
       this.timerMachine.everySecond();
     });
     this.timerMachine.state = this.timerMachine.restState;
-  }
-
-  private updateMinutesAndSeconds(remainingSeconds: number): void {
-    this.timerMachine.seconds = remainingSeconds % SECONDS_PER_MINUTE;
-    this.timerMachine.minutes = Math.floor(remainingSeconds / SECONDS_PER_MINUTE);
   }
 }

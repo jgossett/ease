@@ -1,7 +1,7 @@
 import {TimerState} from './timer-state.class';
 
 /**
- * User was interrupted and had to pause the timer.
+ * The user is interruption. Once the user has resolved interruption, the user continue.
  */
 export class PauseState extends TimerState {
     protected get name(): string {

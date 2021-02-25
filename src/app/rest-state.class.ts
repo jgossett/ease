@@ -1,8 +1,8 @@
-import {TimerState} from './timer-state.class';
-import { SECONDS_PER_MINUTE} from './values';
+import { TimerState } from './timer-state.class';
+import { ZERO_DURATION } from './values';
 
 /**
- * User should be rest and not thinking about work.
+ * The user should rest without thinking about the work.
  */
 export class RestState extends TimerState {
   protected get name(): string {
@@ -10,22 +10,16 @@ export class RestState extends TimerState {
   }
 
   everySecond(): void {
-    this.timerMachine.timerDurationSeconds++;
-    const remainingSeconds = this.timerMachine.restDurationSeconds - this.timerMachine.timerDurationSeconds;
-    this.updateMinutesAndSeconds(remainingSeconds);
+    this.timerMachine.remainingDuration = this.timerMachine.remainingDuration.minus({ seconds: 1 });
 
-    if (remainingSeconds === 0) {
+    const isTimerExpired = this.timerMachine.remainingDuration.equals(ZERO_DURATION);
+    if (isTimerExpired) {
       this.timerMachine.ready();
     }
   }
 
   ready(): void {
     this.timerMachine.everySecondSubscription.unsubscribe();
-
-    this.timerMachine.timerDurationSeconds = 0;
-    const remainingSeconds = this.timerMachine.workDurationSeconds - this.timerMachine.timerDurationSeconds;
-    this.updateMinutesAndSeconds(remainingSeconds);
-
     this.timerMachine.$everySecond = undefined;
 
     this.timerMachine.showPauseButton = false;
@@ -33,10 +27,5 @@ export class RestState extends TimerState {
     this.timerMachine.showStopButton = false;
 
     this.timerMachine.state = this.timerMachine.readyState;
-  }
-
-  private updateMinutesAndSeconds(remainingSeconds: number): void {
-    this.timerMachine.seconds = remainingSeconds % SECONDS_PER_MINUTE;
-    this.timerMachine.minutes = Math.floor(remainingSeconds / SECONDS_PER_MINUTE);
   }
 }

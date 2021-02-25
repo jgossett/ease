@@ -20,11 +20,11 @@ export class AppComponent {
   private timerMachine = new TimerMachine();
 
   get minutes(): number {
-    return this.timerMachine.minutes;
+    return this.timerMachine.remainingDuration.minutes;
   }
 
   get seconds(): number {
-    return this.timerMachine.seconds;
+    return this.timerMachine.remainingDuration.seconds;
   }
 
   get showPauseButton(): boolean {
