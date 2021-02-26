@@ -10,8 +10,8 @@ import { Timer } from './timer.class';
 
 export class TimerMachine {
   restDuration = Duration.fromISOTime('00:00:15');
-  workDuration = Duration.fromISOTime('00:00:30');
-  remainingDuration = cloneDeep(this.workDuration);
+  focusDuration = Duration.fromISOTime('00:00:30');
+  remainingDuration = cloneDeep(this.focusDuration);
 
   showPlayButton = true;
   showPauseButton = false;
@@ -25,7 +25,7 @@ export class TimerMachine {
 
   state: State = this.readyState;
 
-  timer = new Timer(() => this.everySecond());
+  timer = new Timer(remainingDuration => this.everySecond(remainingDuration));
 
   focus(): void {
     this.state.focus();
@@ -47,7 +47,7 @@ export class TimerMachine {
     this.state.ready();
   }
 
-  everySecond(): void {
-    this.state.everySecond();
+  everySecond(remainingDuration: Duration): void {
+    this.state.everySecond(remainingDuration);
   }
 }

@@ -1,3 +1,4 @@
+import { Duration } from 'luxon';
 import { TimerMachine } from '../state-machine.class';
 
 export abstract class State {
@@ -30,7 +31,7 @@ export abstract class State {
     this.methodNotSupported('ready');
   }
 
-  everySecond(): void {
+  everySecond(remainingDuration: Duration): void {
     this.methodNotSupported('everySecond');
   }
 

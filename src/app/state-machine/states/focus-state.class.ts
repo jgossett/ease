@@ -1,4 +1,5 @@
 import { cloneDeep } from 'lodash-es';
+import { Duration } from 'luxon';
 import { ZERO_DURATION } from '../../values';
 import { State } from './state.class';
 
@@ -10,8 +11,8 @@ export class FocusState extends State {
     return 'Work';
   }
 
-  everySecond(): void {
-    this.timerMachine.remainingDuration = this.timerMachine.remainingDuration.minus({ seconds: 1 });
+  everySecond(remainingDuration: Duration): void {
+    this.timerMachine.remainingDuration = remainingDuration;
 
     const isTimerExpired = this.timerMachine.remainingDuration.equals(ZERO_DURATION);
     if (isTimerExpired) {
@@ -24,7 +25,7 @@ export class FocusState extends State {
 
     this.timerMachine.remainingDuration = cloneDeep(this.timerMachine.restDuration);
 
-    this.timerMachine.timer.start();
+    this.timerMachine.timer.start(this.timerMachine.restDuration);
     this.timerMachine.state = this.timerMachine.restState;
   }
 }

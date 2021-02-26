@@ -1,3 +1,4 @@
+import { Duration } from 'luxon';
 import { State } from './state.class';
 import { ZERO_DURATION } from '../../values';
 
@@ -9,8 +10,8 @@ export class RestState extends State {
     return 'Rest';
   }
 
-  everySecond(): void {
-    this.timerMachine.remainingDuration = this.timerMachine.remainingDuration.minus({ seconds: 1 });
+  everySecond(remainingDuration: Duration): void {
+    this.timerMachine.remainingDuration = remainingDuration;
 
     const isTimerExpired = this.timerMachine.remainingDuration.equals(ZERO_DURATION);
     if (isTimerExpired) {
