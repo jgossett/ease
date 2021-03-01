@@ -8,7 +8,7 @@ import { State } from './state.class';
  */
 export class FocusState extends State {
   protected get name(): string {
-    return 'Work';
+    return 'Focus';
   }
 
   everySecond(remainingDuration: Duration): void {
@@ -27,5 +27,20 @@ export class FocusState extends State {
 
     this.timerMachine.timer.start(this.timerMachine.restDuration);
     this.timerMachine.state = this.timerMachine.restState;
+  }
+
+  pause(): void {
+    this.timerMachine.timer.pause();
+    this.timerMachine.state = this.timerMachine.pauseState;
+
+    this.timerMachine.showStopButton = false;
+    this.timerMachine.showPauseButton = false;
+    this.timerMachine.showPlayButton = true;
+  }
+
+  stop(): void {
+    this.timerMachine.timer.stop();
+    this.timerMachine.remainingDuration = cloneDeep(this.timerMachine.focusDuration);
+    this.timerMachine.state = this.timerMachine.readyState;
   }
 }

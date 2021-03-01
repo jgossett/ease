@@ -1,6 +1,7 @@
+import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
-import { State } from './state.class';
 import { ZERO_DURATION } from '../../values';
+import { State } from './state.class';
 
 /**
  * The user should rest without thinking about the work.
@@ -21,6 +22,8 @@ export class RestState extends State {
 
   ready(): void {
     this.timerMachine.timer.stop();
+
+    this.timerMachine.remainingDuration = cloneDeep(this.timerMachine.focusDuration);
 
     this.timerMachine.showPauseButton = false;
     this.timerMachine.showPlayButton = true;

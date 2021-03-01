@@ -12,7 +12,7 @@ export abstract class State {
   }
 
   focus(): void {
-    this.methodNotSupported('work');
+    this.methodNotSupported('focus');
   }
 
   rest(): void {

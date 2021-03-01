@@ -1,6 +1,6 @@
 import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
-import { ResetState } from './states/abort-state.class';
+import { ResetState } from './states/reset-state.class';
 import { PauseState } from './states/pause-state.state';
 import { ReadyState } from './states/ready-state.class';
 import { RestState } from './states/rest-state.class';
