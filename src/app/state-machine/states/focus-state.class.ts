@@ -1,12 +1,15 @@
 import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
 import { ZERO_DURATION } from '../../values';
+import { StopAction } from '../actions/stop-action';
 import { State } from './state.class';
 
 /**
  * The user focuses on work without distractions.
  */
 export class FocusState extends State {
+  private stopAction = new StopAction(this.timerMachine);
+
   protected get name(): string {
     return 'Focus';
   }
@@ -39,12 +42,6 @@ export class FocusState extends State {
   }
 
   stop(): void {
-    this.timerMachine.timer.stop();
-    this.timerMachine.remainingDuration = cloneDeep(this.timerMachine.focusDuration);
-    this.timerMachine.state = this.timerMachine.setTimeState;
-
-    this.timerMachine.showStopButton = false;
-    this.timerMachine.showPauseButton = false;
-    this.timerMachine.showPlayButton = true;
+    this.stopAction.do();
   }
 }
