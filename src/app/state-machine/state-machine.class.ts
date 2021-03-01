@@ -1,16 +1,15 @@
 import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
-import { ResetState } from './states/reset-state.class';
 import { PauseState } from './states/pause-state.state';
-import { ReadyState } from './states/ready-state.class';
+import { SetTimeState } from './states/set-time-state.class';
 import { RestState } from './states/rest-state.class';
 import { State } from './states/state.class';
 import { FocusState } from './states/focus-state.class';
 import { Timer } from './timer.class';
 
 export class TimerMachine {
-  restDuration = Duration.fromISOTime('00:00:15');
-  focusDuration = Duration.fromISOTime('00:00:30');
+  restDuration = Duration.fromISOTime('00:00:05');
+  focusDuration = Duration.fromISOTime('00:00:10');
   remainingDuration = cloneDeep(this.focusDuration);
 
   showPlayButton = true;
@@ -20,10 +19,9 @@ export class TimerMachine {
   readonly focusState: State = new FocusState(this);
   readonly restState: State = new RestState(this);
   readonly pauseState: State = new PauseState(this);
-  readonly abortState: State = new ResetState(this);
-  readonly readyState: State = new ReadyState(this);
+  readonly setTimeState: State = new SetTimeState(this);
 
-  state: State = this.readyState;
+  state: State = this.setTimeState;
 
   timer = new Timer(remainingDuration => this.everySecond(remainingDuration));
 
@@ -40,11 +38,11 @@ export class TimerMachine {
   }
 
   reset(): void {
-    this.state.reset();
+    this.state.stop();
   }
 
   ready(): void {
-    this.state.ready();
+    this.state.completeInterval();
   }
 
   everySecond(remainingDuration: Duration): void {

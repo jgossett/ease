@@ -23,11 +23,11 @@ export abstract class State {
     this.methodNotSupported('pause');
   }
 
-  reset(): void {
-    this.methodNotSupported('abort');
+  stop(): void {
+    this.methodNotSupported('stop');
   }
 
-  ready(): void {
+  completeInterval(): void {
     this.methodNotSupported('ready');
   }
 

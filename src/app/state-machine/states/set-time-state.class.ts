@@ -2,11 +2,11 @@ import { cloneDeep } from 'lodash';
 import { State } from './state.class';
 
 /**
- * The user is preparing to work.
+ * The user finds a task and set a timer to focus on.
  */
-export class ReadyState extends State {
+export class SetTimeState extends State {
   protected get name(): string {
-    return 'Ready';
+    return 'Set Time';
   }
 
   focus(): void {

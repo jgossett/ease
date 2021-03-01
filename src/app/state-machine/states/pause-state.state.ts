@@ -8,8 +8,7 @@ export class PauseState extends State {
     return 'Pause';
   }
 
-
-  focus() {
+  focus(): void {
     this.timerMachine.timer.resume();
   }
 }

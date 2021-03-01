@@ -4,7 +4,7 @@ import { ZERO_DURATION } from '../../values';
 import { State } from './state.class';
 
 /**
- * The user should rest without thinking about the work.
+ * The user should mark the incomplete task and rest without thinking about the work.
  */
 export class RestState extends State {
   protected get name(): string {
@@ -20,7 +20,17 @@ export class RestState extends State {
     }
   }
 
-  ready(): void {
+  stop(): void {
+    this.timerMachine.timer.stop();
+    this.timerMachine.remainingDuration = cloneDeep(this.timerMachine.focusDuration);
+    this.timerMachine.state = this.timerMachine.setTimeState;
+
+    this.timerMachine.showStopButton = false;
+    this.timerMachine.showPauseButton = false;
+    this.timerMachine.showPlayButton = true;
+  }
+
+  completeInterval(): void {
     this.timerMachine.timer.stop();
 
     this.timerMachine.remainingDuration = cloneDeep(this.timerMachine.focusDuration);
@@ -29,6 +39,6 @@ export class RestState extends State {
     this.timerMachine.showPlayButton = true;
     this.timerMachine.showStopButton = false;
 
-    this.timerMachine.state = this.timerMachine.readyState;
+    this.timerMachine.state = this.timerMachine.setTimeState;
   }
 }
