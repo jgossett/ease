@@ -14,6 +14,6 @@ export class PauseState extends State {
     this.timerMachine.showStopButton = true;
 
     this.timerMachine.timer.start(this.timerMachine.remainingDuration);
-    this.timerMachine.transition(this.timerMachine.previousStateClass);
+    this.timerMachine.back();
   }
 }

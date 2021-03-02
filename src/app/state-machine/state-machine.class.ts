@@ -4,6 +4,8 @@ import { SetTimeState } from './states/set-time-state.class';
 import { State } from './states/state.class';
 import { Timer } from './timer.class';
 
+type StateClass = new (timerMachine: TimerMachine) => State;
+
 export class TimerMachine {
   restDuration = Duration.fromISOTime('00:00:05');
   focusDuration = Duration.fromISOTime('00:00:10');
@@ -16,8 +18,8 @@ export class TimerMachine {
   timer = new Timer(remainingDuration => this.everySecond(remainingDuration));
 
   private state: State = new SetTimeState(this);
-  private stateClass: new (timerMachine: TimerMachine) => State;
-  previousStateClass: new (timerMachine: TimerMachine) => State;
+  private stateClass: StateClass;
+  private previousStateClass: StateClass;
 
   focus(): void {
     this.state.focus();
@@ -43,9 +45,16 @@ export class TimerMachine {
     this.state.everySecond(remainingDuration);
   }
 
-  transition(StateClass: new (timerMachine: TimerMachine) => State): void {
+  /**
+   * @param stateClass The next state to transition to. (e.g. PauseState)
+   */
+  transition(stateClass: StateClass): void {
     this.previousStateClass = this.stateClass;
-    this.stateClass = StateClass;
-    this.state = new StateClass(this);
+    this.stateClass = stateClass;
+    this.state = new stateClass(this);
+  }
+
+  back(): void {
+    this.transition(this.previousStateClass);
   }
 }

@@ -2,7 +2,7 @@ import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
 import { ZERO_DURATION } from '../../values';
 import { StopAction } from '../actions/stop-action';
-import { PauseState } from './pause-state.state';
+import { PauseAction } from '../actions/pause-action.class';
 import { RestState } from './rest-state.class';
 import { State } from './state.class';
 
@@ -11,6 +11,7 @@ import { State } from './state.class';
  */
 export class FocusState extends State {
   private stopAction = new StopAction(this.timerMachine);
+  private pauseAction = new PauseAction(this.timerMachine);
 
   protected get name(): string {
     return 'Focus';
@@ -35,13 +36,7 @@ export class FocusState extends State {
   }
 
   pause(): void {
-    this.timerMachine.timer.stop();
-
-    this.timerMachine.showStopButton = false;
-    this.timerMachine.showPauseButton = false;
-    this.timerMachine.showPlayButton = true;
-
-    this.timerMachine.transition(PauseState);
+    this.pauseAction.do()
   }
 
   stop(): void {

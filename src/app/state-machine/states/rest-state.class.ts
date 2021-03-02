@@ -1,6 +1,7 @@
 import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
 import { ZERO_DURATION } from '../../values';
+import { PauseAction } from '../actions/pause-action.class';
 import { StopAction } from '../actions/stop-action';
 import { SetTimeState } from './set-time-state.class';
 import { State } from './state.class';
@@ -10,6 +11,7 @@ import { State } from './state.class';
  */
 export class RestState extends State {
   private stopAction = new StopAction(this.timerMachine);
+  private pauseAction = new PauseAction(this.timerMachine);
 
   protected get name(): string {
     return 'Rest';
@@ -38,5 +40,9 @@ export class RestState extends State {
     this.timerMachine.showStopButton = false;
 
     this.timerMachine.transition(SetTimeState);
+  }
+
+  pause(): void {
+    this.pauseAction.do();
   }
 }
