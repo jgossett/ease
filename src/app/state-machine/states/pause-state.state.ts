@@ -9,6 +9,11 @@ export class PauseState extends State {
   }
 
   focus(): void {
-    this.timerMachine.timer.resume();
+    this.timerMachine.showPauseButton = true;
+    this.timerMachine.showPlayButton = false;
+    this.timerMachine.showStopButton = true;
+
+    this.timerMachine.timer.start(this.timerMachine.remainingDuration);
+    this.timerMachine.transition(this.timerMachine.previousStateClass);
   }
 }

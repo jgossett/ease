@@ -1,10 +1,7 @@
 import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
-import { PauseState } from './states/pause-state.state';
 import { SetTimeState } from './states/set-time-state.class';
-import { RestState } from './states/rest-state.class';
 import { State } from './states/state.class';
-import { FocusState } from './states/focus-state.class';
 import { Timer } from './timer.class';
 
 export class TimerMachine {
@@ -16,14 +13,11 @@ export class TimerMachine {
   showPauseButton = false;
   showStopButton = false;
 
-  readonly focusState: State = new FocusState(this);
-  readonly restState: State = new RestState(this);
-  readonly pauseState: State = new PauseState(this);
-  readonly setTimeState: State = new SetTimeState(this);
-
-  state: State = this.setTimeState;
-
   timer = new Timer(remainingDuration => this.everySecond(remainingDuration));
+
+  private state: State = new SetTimeState(this);
+  private stateClass: new (timerMachine: TimerMachine) => State;
+  previousStateClass: new (timerMachine: TimerMachine) => State;
 
   focus(): void {
     this.state.focus();
@@ -41,11 +35,17 @@ export class TimerMachine {
     this.state.stop();
   }
 
-  ready(): void {
+  completeInterval(): void {
     this.state.completeInterval();
   }
 
   everySecond(remainingDuration: Duration): void {
     this.state.everySecond(remainingDuration);
+  }
+
+  transition(StateClass: new (timerMachine: TimerMachine) => State): void {
+    this.previousStateClass = this.stateClass;
+    this.stateClass = StateClass;
+    this.state = new StateClass(this);
   }
 }

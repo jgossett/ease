@@ -1,4 +1,5 @@
 import { cloneDeep } from 'lodash';
+import { FocusState } from './focus-state.class';
 import { State } from './state.class';
 
 /**
@@ -15,6 +16,6 @@ export class SetTimeState extends State {
     this.timerMachine.showPlayButton = false;
     this.timerMachine.showStopButton = true;
     this.timerMachine.timer.start(this.timerMachine.focusDuration);
-    this.timerMachine.state = this.timerMachine.focusState;
+    this.timerMachine.transition(FocusState);
   }
 }

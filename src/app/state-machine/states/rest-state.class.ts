@@ -2,6 +2,7 @@ import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
 import { ZERO_DURATION } from '../../values';
 import { StopAction } from '../actions/stop-action';
+import { SetTimeState } from './set-time-state.class';
 import { State } from './state.class';
 
 /**
@@ -19,7 +20,7 @@ export class RestState extends State {
 
     const isTimerExpired = this.timerMachine.remainingDuration.equals(ZERO_DURATION);
     if (isTimerExpired) {
-      this.timerMachine.ready();
+      this.timerMachine.completeInterval();
     }
   }
 
@@ -36,6 +37,6 @@ export class RestState extends State {
     this.timerMachine.showPlayButton = true;
     this.timerMachine.showStopButton = false;
 
-    this.timerMachine.state = this.timerMachine.setTimeState;
+    this.timerMachine.transition(SetTimeState);
   }
 }
