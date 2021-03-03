@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import { FocusState } from './focus-state.class';
 import { State } from './state.class';
 

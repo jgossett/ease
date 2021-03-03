@@ -33,7 +33,8 @@ export class Timer {
   private createTimer(expiredDuration: Duration): Observable<Duration> {
     const calculateElapsedDuration = (elapsedSeconds: number): Duration => {
       const elapsedDuration = Duration.fromObject({ seconds: elapsedSeconds });
-      return expiredDuration.minus(elapsedDuration);
+      return expiredDuration.minus(elapsedDuration)
+        .normalize();
     };
 
     return timer(0, ONE_SECOND)

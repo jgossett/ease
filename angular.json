@@ -32,11 +32,20 @@
             "scripts": []
           },
           "configurations": {
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/settings.value.ts",
+                  "with": "src/environments/local/settings-local.value.ts"
+                }
+              ]
+            },
+
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src/environments/settings.value.ts",
+                  "with": "src/environments/production/settings-production.value.ts"
                 }
               ],
               "optimization": true,
@@ -67,6 +76,9 @@
             "browserTarget": "Ease:build"
           },
           "configurations": {
+            "local": {
+              "browserTarget": "Ease:build:local"
+            },
             "production": {
               "browserTarget": "Ease:build:production"
             }

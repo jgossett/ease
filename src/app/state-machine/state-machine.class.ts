@@ -1,5 +1,6 @@
 import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
+import { settings } from '../../environments/settings.value';
 import { SetTimeState } from './states/set-time-state.class';
 import { State } from './states/state.class';
 import { Timer } from './timer.class';
@@ -7,8 +8,8 @@ import { Timer } from './timer.class';
 type StateClass = new (timerMachine: TimerMachine) => State;
 
 export class TimerMachine {
-  restDuration = Duration.fromISOTime('00:00:05');
-  focusDuration = Duration.fromISOTime('00:00:10');
+  restDuration = settings.restDuration;
+  focusDuration = settings.focusDuration;
   remainingDuration = cloneDeep(this.focusDuration);
 
   showPlayButton = true;
