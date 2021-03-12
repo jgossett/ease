@@ -7,7 +7,7 @@ import { RestState } from './rest-state.class';
 import { State } from './state.class';
 
 /**
- * The user focuses on work without distractions.
+ * Focus the user on work. Eliminate distractions.
  */
 export class FocusState extends State {
   private stopAction = new StopAction(this.timerMachine);

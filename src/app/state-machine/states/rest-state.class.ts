@@ -7,7 +7,7 @@ import { SetTimeState } from './set-time-state.class';
 import { State } from './state.class';
 
 /**
- * The user should mark the incomplete task and rest without thinking about the work.
+ * Rest the user from work. (e.g. take a walk, bathroom break)
  */
 export class RestState extends State {
   private stopAction = new StopAction(this.timerMachine);
