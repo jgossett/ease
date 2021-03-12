@@ -1,5 +1,6 @@
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { TimerMachine } from '../state-machine.class';
+import { PauseState } from '../states/pause-state.state';
 import { Timer } from '../timer.class';
 import { PauseAction } from './pause-action.class';
 
@@ -26,7 +27,7 @@ describe('PauseAction', () => {
       .toBeDefined();
   });
 
-  it('should only show play button', () => {
+  it('should only show play button and transition to PauseState.', () => {
     // arrange
     timerMachine.showPauseButton = true;
     timerMachine.showPlayButton = false;
@@ -45,6 +46,7 @@ describe('PauseAction', () => {
     expect(timerMachine.showStopButton)
       .toBeFalse();
 
-    timerMachine.transition.calledWith(PauseAction);
+    expect(timerMachine.transition)
+      .toHaveBeenCalledWith(PauseState);
   });
 });

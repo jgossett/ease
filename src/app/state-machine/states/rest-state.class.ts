@@ -2,7 +2,7 @@ import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
 import { ZERO_DURATION } from '../../values';
 import { PauseAction } from '../actions/pause-action.class';
-import { StopAction } from '../actions/stop-action';
+import { StopAction } from '../actions/stop-action.class';
 import { SetTimeState } from './set-time-state.class';
 import { State } from './state.class';
 
