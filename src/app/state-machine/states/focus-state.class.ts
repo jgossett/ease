@@ -1,8 +1,8 @@
 import { cloneDeep } from 'lodash-es';
 import { Duration } from 'luxon';
 import { ZERO_DURATION } from '../../values';
-import { StopAction } from '../actions/stop-action.class';
 import { PauseAction } from '../actions/pause-action.class';
+import { StopAction } from '../actions/stop-action.class';
 import { RestState } from './rest-state.class';
 import { State } from './state.class';
 
@@ -36,7 +36,7 @@ export class FocusState extends State {
   }
 
   pause(): void {
-    this.pauseAction.do()
+    this.pauseAction.do();
   }
 
   stop(): void {
