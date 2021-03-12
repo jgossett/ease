@@ -1,7 +1,8 @@
-import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
+import { Spy } from 'jasmine-auto-spies';
 import { TimerMachine } from '../state-machine.class';
 import { PauseState } from '../states/pause-state.state';
 import { Timer } from '../timer.class';
+import { createTimerMachineSpy } from './create-timer-machine-spy.function';
 import { PauseAction } from './pause-action.class';
 
 describe('PauseAction', () => {
@@ -11,10 +12,8 @@ describe('PauseAction', () => {
   let timer: Spy<Timer>;
 
   beforeEach(() => {
-    timerMachine = createSpyFromClass(TimerMachine, { gettersToSpyOn: ['timer'] });
-
-    timer = createSpyFromClass(Timer);
-    timerMachine.accessorSpies.getters.timer.and.returnValue(timer);
+    timerMachine = createTimerMachineSpy();
+    timer = timerMachine.timer as Spy<Timer>;
 
     target = new PauseAction(timerMachine);
     targetAny = target;
