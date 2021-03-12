@@ -8,9 +8,9 @@ export class PauseAction {
   do(): void {
     this.timerMachine.timer.stop();
 
-    this.timerMachine.showStopButton = false;
     this.timerMachine.showPauseButton = false;
     this.timerMachine.showPlayButton = true;
+    this.timerMachine.showStopButton = false;
 
     this.timerMachine.transition(PauseState);
   }
