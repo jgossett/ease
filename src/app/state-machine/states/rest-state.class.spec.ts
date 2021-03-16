@@ -19,7 +19,9 @@ describe('RestState', () => {
 
   beforeAll(() => {
     jasmine.addCustomEqualityTester(durationEqualityTester);
+  });
 
+  beforeEach(() => {
     timerMachine = createTimerMachineSpy();
     timer = timerMachine.timer as Spy<Timer>;
 
