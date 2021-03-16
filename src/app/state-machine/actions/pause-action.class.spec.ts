@@ -2,7 +2,7 @@ import { Spy } from 'jasmine-auto-spies';
 import { TimerMachine } from '../state-machine.class';
 import { PauseState } from '../states/pause-state.state';
 import { Timer } from '../timer.class';
-import { createTimerMachineSpy } from './create-timer-machine-spy.function';
+import { createTimerMachineSpy } from '../test/create-timer-machine-spy.function';
 import { PauseAction } from './pause-action.class';
 
 describe('PauseAction', () => {

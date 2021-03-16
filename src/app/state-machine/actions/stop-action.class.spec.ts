@@ -3,7 +3,7 @@ import { Duration } from 'luxon';
 import { TimerMachine } from '../state-machine.class';
 import { SetTimeState } from '../states/set-time-state.class';
 import { Timer } from '../timer.class';
-import { createTimerMachineSpy } from './create-timer-machine-spy.function';
+import { createTimerMachineSpy } from '../test/create-timer-machine-spy.function';
 import { StopAction } from './stop-action.class';
 
 describe('StopAction', () => {

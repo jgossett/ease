@@ -18,7 +18,7 @@ export class FocusState extends State {
   }
 
   everySecond(remainingDuration: Duration): void {
-    this.timerMachine.remainingDuration = remainingDuration;
+    this.timerMachine.remainingDuration = cloneDeep(remainingDuration);
 
     const isTimerExpired = this.timerMachine.remainingDuration.equals(ZERO_DURATION);
     if (isTimerExpired) {
@@ -36,6 +36,7 @@ export class FocusState extends State {
   }
 
   pause(): void {
+    console.log('PauseAction', this.pauseAction);
     this.pauseAction.do();
   }
 
