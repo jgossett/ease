@@ -40,7 +40,7 @@ export class AppComponent {
   }
 
   onReset(): void {
-    this.timerMachine.reset();
+    this.timerMachine.stop();
   }
 
   onShowSettingMenu(): void {
@@ -56,6 +56,6 @@ export class AppComponent {
   }
 
   onStop(): void {
-    this.timerMachine.reset();
+    this.timerMachine.stop();
   }
 }

@@ -18,32 +18,32 @@ export class TimerMachine {
 
   timer = new Timer(remainingDuration => this.everySecond(remainingDuration));
 
-  private state: State = new SetTimeState(this);
-  private stateClass: StateClass;
+  private stateInstance: State = new SetTimeState(this);
+  private stateClass: StateClass = SetTimeState;
   private previousStateClass: StateClass;
 
   focus(): void {
-    this.state.focus();
+    this.stateInstance.focus();
   }
 
   rest(): void {
-    this.state.rest();
+    this.stateInstance.rest();
   }
 
   pause(): void {
-    this.state.pause();
+    this.stateInstance.pause();
   }
 
-  reset(): void {
-    this.state.stop();
+  stop(): void {
+    this.stateInstance.stop();
   }
 
   completeInterval(): void {
-    this.state.completeInterval();
+    this.stateInstance.completeInterval();
   }
 
   everySecond(remainingDuration: Duration): void {
-    this.state.everySecond(remainingDuration);
+    this.stateInstance.everySecond(remainingDuration);
   }
 
   /**
@@ -52,7 +52,7 @@ export class TimerMachine {
   transition(stateClass: StateClass): void {
     this.previousStateClass = this.stateClass;
     this.stateClass = stateClass;
-    this.state = new stateClass(this);
+    this.stateInstance = new stateClass(this);
   }
 
   back(): void {
