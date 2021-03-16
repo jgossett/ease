@@ -18,16 +18,12 @@ export class RestState extends State {
   }
 
   everySecond(remainingDuration: Duration): void {
-    this.timerMachine.remainingDuration = remainingDuration;
+    this.timerMachine.remainingDuration = cloneDeep(remainingDuration);
 
     const isTimerExpired = this.timerMachine.remainingDuration.equals(ZERO_DURATION);
     if (isTimerExpired) {
       this.timerMachine.completeInterval();
     }
-  }
-
-  stop(): void {
-    this.stopAction.do();
   }
 
   completeInterval(): void {
@@ -44,5 +40,9 @@ export class RestState extends State {
 
   pause(): void {
     this.pauseAction.do();
+  }
+
+  stop(): void {
+    this.stopAction.do();
   }
 }

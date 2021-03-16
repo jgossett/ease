@@ -6,8 +6,9 @@ import { Timer } from '../timer.class';
 import { FocusState } from './focus-state.class';
 import { SetTimeState } from './set-time-state.class';
 
-describe('SetTimerState', () => {
+describe('SetTimeState', () => {
   let target: SetTimeState;
+  let targetAny: any;
   let timerMachine: TimerMachine;
   let timer: Spy<Timer>;
 
@@ -19,11 +20,14 @@ describe('SetTimerState', () => {
     timerMachine = createTimerMachineSpy();
     timer = timerMachine.timer as Spy<Timer>;
     target = new SetTimeState(timerMachine);
+    targetAny = target;
   });
 
   it('should be created', () => {
     expect(target)
       .toBeDefined();
+    expect(targetAny.name)
+      .toBe('Set Time');
   });
 
   it('focus show Pause and Stop button, then transition to FocusState', () => {
