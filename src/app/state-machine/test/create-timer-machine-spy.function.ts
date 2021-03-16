@@ -5,7 +5,7 @@ import { Timer } from '../timer.class';
 
 export const createTimerMachineSpy = (): Spy<TimerMachine> => {
   const timerMachine = createSpyFromClass(TimerMachine, { gettersToSpyOn: ['timer'] });
-  timerMachine.remainingDuration = timerMachine.remainingDuration = Duration.fromISOTime('00:00:10');
+  timerMachine.remainingDuration = Duration.fromISOTime('00:00:10');
 
   // create `timer` getter method.
   const timer = createSpyFromClass(Timer);
