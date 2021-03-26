@@ -145,6 +145,73 @@
           }
         }
       }
+    },
+    "ease-ease": {
+      "root": "apps/ease/ease",
+      "sourceRoot": "apps/ease/ease/src",
+      "projectType": "application",
+      "prefix": "ease-ease",
+      "architect": {
+        "build": {
+          "builder": "nx-electron:build",
+          "options": {
+            "outputPath": "dist/apps/ease/ease",
+            "main": "apps/ease/ease/src/main.ts",
+            "tsConfig": "apps/ease/ease/tsconfig.app.json",
+            "assets": ["apps/ease/ease/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/ease/ease/src/environments/environment.ts",
+                  "with": "apps/ease/ease/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "nx-electron:execute",
+          "options": {
+            "buildTarget": "ease-ease:build"
+          }
+        },
+        "package": {
+          "builder": "nx-electron:package",
+          "options": {
+            "name": "ease-ease",
+            "frontendProject": "renderer",
+            "outputPath": "dist/packages",
+            "prepackageOnly": true
+          }
+        },
+        "make": {
+          "builder": "nx-electron:make",
+          "options": {
+            "name": "ease-ease",
+            "frontendProject": "renderer",
+            "outputPath": "dist/executables"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/ease/ease/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/ease/ease"],
+          "options": {
+            "jestConfig": "apps/ease/ease/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }
