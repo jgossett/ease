@@ -4,7 +4,7 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "parserOptions": { "project": ["apps/ease/ease/tsconfig.*?.json"] },
+      "parserOptions": { "project": ["apps/ease/tsconfig.*?.json"] },
       "rules": {}
     },
     { "files": ["*.ts", "*.tsx"], "rules": {} },

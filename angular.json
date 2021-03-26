@@ -146,19 +146,19 @@
         }
       }
     },
-    "ease-ease": {
-      "root": "apps/ease/ease",
-      "sourceRoot": "apps/ease/ease/src",
+    "ease": {
+      "root": "apps/ease",
+      "sourceRoot": "apps/ease/src",
       "projectType": "application",
-      "prefix": "ease-ease",
+      "prefix": "ease",
       "architect": {
         "build": {
           "builder": "nx-electron:build",
           "options": {
-            "outputPath": "dist/apps/ease/ease",
-            "main": "apps/ease/ease/src/main.ts",
-            "tsConfig": "apps/ease/ease/tsconfig.app.json",
-            "assets": ["apps/ease/ease/src/assets"]
+            "outputPath": "dist/apps/ease",
+            "main": "apps/ease/src/main.ts",
+            "tsConfig": "apps/ease/tsconfig.app.json",
+            "assets": ["apps/ease/src/assets"]
           },
           "configurations": {
             "production": {
@@ -167,8 +167,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/ease/ease/src/environments/environment.ts",
-                  "with": "apps/ease/ease/src/environments/environment.prod.ts"
+                  "replace": "apps/ease/src/environments/environment.ts",
+                  "with": "apps/ease/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -177,13 +177,13 @@
         "serve": {
           "builder": "nx-electron:execute",
           "options": {
-            "buildTarget": "ease-ease:build"
+            "buildTarget": "ease:build"
           }
         },
         "package": {
           "builder": "nx-electron:package",
           "options": {
-            "name": "ease-ease",
+            "name": "ease",
             "frontendProject": "renderer",
             "outputPath": "dist/packages",
             "prepackageOnly": true
@@ -192,7 +192,7 @@
         "make": {
           "builder": "nx-electron:make",
           "options": {
-            "name": "ease-ease",
+            "name": "ease",
             "frontendProject": "renderer",
             "outputPath": "dist/executables"
           }
@@ -200,14 +200,14 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/ease/ease/**/*.ts"]
+            "lintFilePatterns": ["apps/ease/**/*.ts"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/ease/ease"],
+          "outputs": ["coverage/apps/ease"],
           "options": {
-            "jestConfig": "apps/ease/ease/jest.config.js",
+            "jestConfig": "apps/ease/jest.config.js",
             "passWithNoTests": true
           }
         }
