@@ -22,8 +22,8 @@ const addTailwindConfiguration = (webpackConfiguration) => {
     for (const postcssRuleUse of postcssRuleUses) {
       const postcssOptionsGeneratorSnapshot = postcssRuleUse.options.postcssOptions;
 
-      // Decorate postcssOptions generator function. Replaces with a function that inserts the Tailwind plugin before
-      // Autoprefixer plugin.
+      // Decorates the postcssOptions generator function. Replaces with a function that inserts the Tailwind plugin
+      // before Autoprefixer plugin.
       postcssRuleUse.options.postcssOptions = (loader) => {
         const postCssOptions = postcssOptionsGeneratorSnapshot(loader);
         const autoprefixerOptionsIndex = postCssOptions.plugins.findIndex(
@@ -31,7 +31,7 @@ const addTailwindConfiguration = (webpackConfiguration) => {
         );
 
         if(autoprefixerOptionsIndex === INDEX_NOT_FOUND){
-          console.error(`Could not found ${AUTOPREFIXER_PLUGIN_NAME} in the postcss loader.`);
+          console.error(`Could not find '${AUTOPREFIXER_PLUGIN_NAME}' in the postcss loader.`);
           return postCssOptions;
         }
 

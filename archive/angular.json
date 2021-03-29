@@ -73,6 +73,9 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
+            "customWebpackConfig": {
+              "path": "webpack.config.js"
+            },
             "browserTarget": "Ease:build"
           },
           "configurations": {
@@ -82,9 +85,6 @@
             "production": {
               "browserTarget": "Ease:build:production"
             }
-          },
-          "customWebpackConfig": {
-            "path": "webpack.config.js"
           }
         },
         "extract-i18n": {
@@ -107,10 +107,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "customWebpackConfig": {
-              "path": "webpack.config.js"
-            }
+            "scripts": []
           }
         },
         "lint": {
