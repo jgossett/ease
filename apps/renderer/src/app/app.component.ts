@@ -6,7 +6,7 @@ import { TimerMachine } from './state-machine/state-machine.class';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['../../../../archive/src/app/app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   readonly fasRedo = faRedo;

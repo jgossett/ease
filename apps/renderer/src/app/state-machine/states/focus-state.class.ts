@@ -36,7 +36,6 @@ export class FocusState extends State {
   }
 
   pause(): void {
-    console.log('PauseAction', this.pauseAction);
     this.pauseAction.do();
   }
 

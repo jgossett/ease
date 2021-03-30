@@ -1,6 +1,6 @@
 import { ApplicationErrorHandler } from './application-error-handler';
 
-describe('ApplicationErrorHandler', () => {
+describe('', () => {
   it('should create an instance', () => {
     expect(new ApplicationErrorHandler()).toBeTruthy();
   });

@@ -44,7 +44,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@nrwl/angular": "11.5.2",
     "check-types": "^11.1.2",
-    "lodash-es": "^4.17.21",
+    "e": "^4.17.21",
     "luxon": "^1.26.0",
     "rxjs": "~6.6.3",
     "tailwindcss": "^2.0.4",

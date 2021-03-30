@@ -41,11 +41,11 @@ describe('SetTimeState', () => {
       .toEqual(timerMachine.focusDuration);
 
     expect(timerMachine.showPauseButton)
-      .toBeTruthy();
+      .toBe(true);
     expect(timerMachine.showPlayButton)
-      .toBeFalsy();
+      .toBe(false);
     expect(timerMachine.showStopButton)
-      .toBeTruthy();
+      .toBe(true);
 
     expect(timer.start)
       .toHaveBeenCalledWith(timerMachine.focusDuration);

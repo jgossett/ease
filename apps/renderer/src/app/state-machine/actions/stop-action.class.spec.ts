@@ -49,11 +49,11 @@ describe('StopAction', () => {
       .toBe(duration);
 
     expect(timerMachine.showPauseButton)
-      .toBeFalsy();
+      .toBe(false);
     expect(timerMachine.showPlayButton)
-      .toBeTruthy();
+      .toBe(true);
     expect(timerMachine.showStopButton)
-      .toBeFalsy();
+      .toBe(false);
 
     expect(timerMachine.transition)
       .toHaveBeenCalledWith(SetTimeState);
