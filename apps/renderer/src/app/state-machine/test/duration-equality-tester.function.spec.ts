@@ -21,7 +21,7 @@ describe('durationEqualityTester', () => {
 
     // Assert
     expect(actual)
-      .toBeTrue();
+      .toBeTruthy();
   });
 
   it('should 2 different duration values should not be equal.', () => {
@@ -33,7 +33,7 @@ describe('durationEqualityTester', () => {
 
     // Assert
     expect(actual)
-      .toBeFalse();
+      .toBeFalsy();
   });
 
   it('should 2 references should not be equal.', () => {
@@ -45,7 +45,7 @@ describe('durationEqualityTester', () => {
 
     // Assert
     expect(actual)
-      .toBeFalse();
+      .toBeFalsy();
   });
 
   it('should return undefined with 1st argument is not a Duration class', () => {

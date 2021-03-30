@@ -1,19 +1,21 @@
-import { Spy } from 'jasmine-auto-spies';
 import { TimerMachine } from '../state-machine.class';
 import { PauseState } from '../states/pause-state.state';
 import { Timer } from '../timer.class';
 import { createTimerMachineSpy } from '../test/create-timer-machine-spy.function';
 import { PauseAction } from './pause-action.class';
 
+jest.mock('../state-machine.class');
+jest.mock('../timer.class');
+
 describe('PauseAction', () => {
   let target: PauseAction;
   let targetAny: any;
-  let timerMachine: Spy<TimerMachine>;
-  let timer: Spy<Timer>;
+  let timerMachine: TimerMachine;
+  let timer: Timer;
 
   beforeEach(() => {
     timerMachine = createTimerMachineSpy();
-    timer = timerMachine.timer as Spy<Timer>;
+    timer = timerMachine.timer;
 
     target = new PauseAction(timerMachine);
     targetAny = target;
@@ -36,14 +38,15 @@ describe('PauseAction', () => {
     target.do();
 
     // assert
-    timer.stop.calledWith();
+    expect(timer.stop)
+      .toHaveBeenCalled();
 
     expect(timerMachine.showPauseButton)
-      .toBeFalse();
+      .toBeFalsy();
     expect(timerMachine.showPlayButton)
-      .toBeTrue();
+      .toBeTruthy();
     expect(timerMachine.showStopButton)
-      .toBeFalse();
+      .toBeFalsy();
 
     expect(timerMachine.transition)
       .toHaveBeenCalledWith(PauseState);

@@ -20,4 +20,7 @@ module.exports = {
     'jest-preset-angular/build/AngularSnapshotSerializer.js',
     'jest-preset-angular/build/HTMLCommentSerializer.js',
   ],
+  moduleNameMapper: {
+    "^lodash-es$": "lodash"
+  }
 };

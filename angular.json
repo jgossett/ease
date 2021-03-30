@@ -58,11 +58,19 @@
             "scripts": []
           },
           "configurations": {
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/settings.value.ts",
+                  "with": "src/environments/local/settings-local.value.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/renderer/src/environments/environment.ts",
-                  "with": "apps/renderer/src/environments/environment.prod.ts"
+                  "replace": "src/environments/settings.value.ts",
+                  "with": "src/environments/production/settings-production.value.ts"
                 }
               ],
               "optimization": true,

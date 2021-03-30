@@ -1,37 +1,40 @@
-import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { Duration } from 'luxon';
 import { PauseAction } from '../actions/pause-action.class';
 import { StopAction } from '../actions/stop-action.class';
 import { TimerMachine } from '../state-machine.class';
 import { createTimerMachineSpy } from '../test/create-timer-machine-spy.function';
-import { durationEqualityTester } from '../test/duration-equality-tester.function';
+import { alikeMatcher } from '../test/duration-equality-tester.function';
 import { Timer } from '../timer.class';
 import { RestState } from './rest-state.class';
 import { SetTimeState } from './set-time-state.class';
+
+jest.mock('../timer.class');
+jest.mock('../state-machine.class');
+jest.mock('./set-time-state.class');
+jest.mock('../actions/pause-action.class');
+jest.mock('../actions/stop-action.class');
 
 describe('RestState', () => {
   let target: RestState;
   let targetAny: any;
   let timerMachine: TimerMachine;
-  let timer: Spy<Timer>;
-  let pauseAction: Spy<PauseAction>;
-  let stopAction: Spy<StopAction>;
+  let timer: Timer;
+  let pauseAction: PauseAction;
+  let stopAction: StopAction;
 
-  beforeAll(() => {
-    jasmine.addCustomEqualityTester(durationEqualityTester);
-  });
+  expect.extend(alikeMatcher);
 
   beforeEach(() => {
     timerMachine = createTimerMachineSpy();
-    timer = timerMachine.timer as Spy<Timer>;
+    timer = timerMachine.timer;
 
     target = new RestState(timerMachine);
     targetAny = target as any;
 
-    pauseAction = createSpyFromClass(PauseAction);
+    pauseAction = new PauseAction(timerMachine);
     targetAny.pauseAction = pauseAction;
 
-    stopAction = createSpyFromClass(StopAction);
+    stopAction = new StopAction(timerMachine);
     targetAny.stopAction = stopAction;
   });
 
@@ -110,11 +113,11 @@ describe('RestState', () => {
       .toEqual(timerMachine.focusDuration);
 
     expect(timerMachine.showPauseButton)
-      .toBeFalse();
+      .toBe(false);
     expect(timerMachine.showPlayButton)
-      .toBeTrue();
+      .toBe(true);
     expect(timerMachine.showStopButton)
-      .toBeFalse();
+      .toBe(false);
 
     expect(timerMachine.transition)
       .toHaveBeenCalledWith(SetTimeState);

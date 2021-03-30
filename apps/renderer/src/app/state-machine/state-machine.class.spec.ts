@@ -1,20 +1,20 @@
-import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
 import { Duration } from 'luxon';
 import { TimerMachine } from './state-machine.class';
 import { FocusState } from './states/focus-state.class';
-import { SetTimeState } from './states/set-time-state.class';
 import { State } from './states/state.class';
 import { MockState } from './test/mock-state.class';
+
+jest.mock('./test/mock-state.class');
 
 describe('StateMachine', () => {
   let target: TimerMachine;
   let targetAny: any;
-  let stateInstance: Spy<State>;
+  let stateInstance: State;
 
   beforeEach(() => {
     target = new TimerMachine();
     targetAny = target;
-    stateInstance = createSpyFromClass(MockState);
+    stateInstance = new MockState();
     targetAny.stateInstance = stateInstance;
     targetAny.stateClass = MockState;
   });
