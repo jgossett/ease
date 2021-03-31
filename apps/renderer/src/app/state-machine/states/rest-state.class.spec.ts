@@ -2,8 +2,7 @@ import { Duration } from 'luxon';
 import { PauseAction } from '../actions/pause-action.class';
 import { StopAction } from '../actions/stop-action.class';
 import { TimerMachine } from '../state-machine.class';
-import { createTimerMachineSpy } from '../test/create-timer-machine-spy.function';
-import { alikeMatcher } from '../test/duration-equality-tester.function';
+import { TimerMachineMockFactory } from '../test/timer-machine-mock-factory.class';
 import { Timer } from '../timer.class';
 import { RestState } from './rest-state.class';
 import { SetTimeState } from './set-time-state.class';
@@ -22,10 +21,8 @@ describe('RestState', () => {
   let pauseAction: PauseAction;
   let stopAction: StopAction;
 
-  expect.extend(alikeMatcher);
-
   beforeEach(() => {
-    timerMachine = createTimerMachineSpy();
+    timerMachine = TimerMachineMockFactory.build();
     timer = timerMachine.timer;
 
     target = new RestState(timerMachine);

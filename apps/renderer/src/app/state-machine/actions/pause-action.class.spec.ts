@@ -1,7 +1,7 @@
 import { TimerMachine } from '../state-machine.class';
 import { PauseState } from '../states/pause-state.state';
 import { Timer } from '../timer.class';
-import { createTimerMachineSpy } from '../test/create-timer-machine-spy.function';
+import {  TimerMachineMockFactory } from '../test/timer-machine-mock-factory.class';
 import { PauseAction } from './pause-action.class';
 
 jest.mock('../state-machine.class');
@@ -14,7 +14,7 @@ describe('PauseAction', () => {
   let timer: Timer;
 
   beforeEach(() => {
-    timerMachine = createTimerMachineSpy();
+    timerMachine = TimerMachineMockFactory.build();
     timer = timerMachine.timer;
 
     target = new PauseAction(timerMachine);

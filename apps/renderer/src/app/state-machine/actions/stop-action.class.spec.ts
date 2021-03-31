@@ -2,7 +2,7 @@ import { Duration } from 'luxon';
 import { TimerMachine } from '../state-machine.class';
 import { SetTimeState } from '../states/set-time-state.class';
 import { Timer } from '../timer.class';
-import { createTimerMachineSpy } from '../test/create-timer-machine-spy.function';
+import { TimerMachineMockFactory } from '../test/timer-machine-mock-factory.class';
 import { StopAction } from './stop-action.class';
 
 jest.mock('../state-machine.class');
@@ -14,7 +14,7 @@ describe('StopAction', () => {
   let timer: Timer;
 
   beforeEach(() => {
-    timerMachine = createTimerMachineSpy();
+    timerMachine = TimerMachineMockFactory.build();
     timer = timerMachine.timer;
 
     target = new StopAction(timerMachine);

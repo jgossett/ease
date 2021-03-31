@@ -2,7 +2,7 @@ import { Duration } from 'luxon';
 import { PauseAction } from '../actions/pause-action.class';
 import { StopAction } from '../actions/stop-action.class';
 import { TimerMachine } from '../state-machine.class';
-import { createTimerMachineSpy } from '../test/create-timer-machine-spy.function';
+import { TimerMachineMockFactory } from '../test/timer-machine-mock-factory.class';
 import { Timer } from '../timer.class';
 import { FocusState } from './focus-state.class';
 import { RestState } from './rest-state.class';
@@ -21,7 +21,8 @@ describe('FocusState', () => {
   let stopAction: StopAction;
 
   beforeEach(() => {
-    timerMachine = createTimerMachineSpy();
+    timerMachine = TimerMachineMockFactory.build();
+    ;
     timer = timerMachine.timer;
 
     target = new FocusState(timerMachine);

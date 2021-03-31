@@ -1,5 +1,5 @@
 import { TimerMachine } from '../state-machine.class';
-import { createTimerMachineSpy } from '../test/create-timer-machine-spy.function';
+import {  TimerMachineMockFactory } from '../test/timer-machine-mock-factory.class';
 import { Timer } from '../timer.class';
 import { FocusState } from './focus-state.class';
 import { SetTimeState } from './set-time-state.class';
@@ -14,7 +14,7 @@ describe('SetTimeState', () => {
   let timer: Timer;
 
   beforeEach(() => {
-    timerMachine = createTimerMachineSpy();
+    timerMachine = TimerMachineMockFactory.build();;
     timer = timerMachine.timer;
     target = new SetTimeState(timerMachine);
     targetAny = target;
