@@ -12,6 +12,7 @@
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
     "serve:ease": "nx serve ease",
+    "serve:renderer": "nx serve renderer",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",

@@ -41,6 +41,9 @@
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "check-types"
+            ],
             "customWebpackConfig": {
               "path": "webpack.config.js"
             },
