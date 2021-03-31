@@ -30,7 +30,6 @@ describe('PauseState', () => {
   });
 
   it('focus should go back to previous state', () => {
-
     // act
     target.focus();
 
