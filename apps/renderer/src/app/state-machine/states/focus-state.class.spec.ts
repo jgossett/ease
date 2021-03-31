@@ -22,7 +22,7 @@ describe('FocusState', () => {
 
   beforeEach(() => {
     timerMachine = TimerMachineMockFactory.build();
-    ;
+
     timer = timerMachine.timer;
 
     target = new FocusState(timerMachine);
