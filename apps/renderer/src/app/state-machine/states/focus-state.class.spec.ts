@@ -14,6 +14,7 @@ jest.mock('../actions/stop-action.class');
 
 describe('FocusState', () => {
   let target: FocusState;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let targetAny: any;
   let timerMachine: TimerMachine;
   let timer: Timer;
@@ -26,6 +27,7 @@ describe('FocusState', () => {
     timer = timerMachine.timer;
 
     target = new FocusState(timerMachine);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     targetAny = target as any;
 
     pauseAction = new PauseAction(timerMachine);

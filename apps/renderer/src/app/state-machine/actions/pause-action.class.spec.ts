@@ -9,6 +9,7 @@ jest.mock('../timer.class');
 
 describe('PauseAction', () => {
   let target: PauseAction;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let targetAny: any;
   let timerMachine: TimerMachine;
   let timer: Timer;

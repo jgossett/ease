@@ -2,6 +2,7 @@ import { ApplicationErrorHandler } from './application-error-handler';
 
 describe('ApplicationErrorHandler', () => {
   let target: ApplicationErrorHandler;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let targetAny: any;
 
   beforeEach(() => {
@@ -9,6 +10,7 @@ describe('ApplicationErrorHandler', () => {
     targetAny = target;
 
     jest.spyOn(window, 'alert')
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
       .mockImplementation(() => {
       });
   });

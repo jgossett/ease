@@ -9,6 +9,7 @@ jest.mock('../state-machine.class');
 
 describe('PauseState', () => {
   let target: PauseState;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let targetAny: any;
   let timerMachine: TimerMachine;
   let timer: Timer;
@@ -19,6 +20,7 @@ describe('PauseState', () => {
     timer = timerMachine.timer;
 
     target = new PauseState(timerMachine);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     targetAny = target as any;
   });
 

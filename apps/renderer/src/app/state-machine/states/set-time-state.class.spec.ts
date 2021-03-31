@@ -9,12 +9,13 @@ jest.mock('../timer.class')
 
 describe('SetTimeState', () => {
   let target: SetTimeState;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let targetAny: any;
   let timerMachine: TimerMachine;
   let timer: Timer;
 
   beforeEach(() => {
-    timerMachine = TimerMachineMockFactory.build();;
+    timerMachine = TimerMachineMockFactory.build();
     timer = timerMachine.timer;
     target = new SetTimeState(timerMachine);
     targetAny = target;

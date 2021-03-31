@@ -31,6 +31,7 @@ export abstract class State {
     this.methodNotSupported('ready');
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   everySecond(remainingDuration: Duration): void {
     this.methodNotSupported('everySecond');
   }

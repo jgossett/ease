@@ -13,6 +13,7 @@ export default class ElectronEvents {
 }
 
 // Retrieve app version
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 ipcMain.handle('get-app-version', (event) => {
   console.log(`Fetching application version... [v${environment.version}]`);
 

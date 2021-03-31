@@ -4,7 +4,7 @@ import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
 import { TimerMachine } from './state-machine/state-machine.class';
 
 @Component({
-  selector: 'app-root',
+  selector: 'ease-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

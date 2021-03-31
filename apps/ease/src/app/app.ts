@@ -1,8 +1,8 @@
-import { BrowserWindow, shell, screen } from 'electron';
-import { rendererAppName, rendererAppPort } from './constants';
-import { environment } from '../environments/environment';
+import { BrowserWindow, screen, shell } from 'electron';
 import { join } from 'path';
 import { format } from 'url';
+import { environment } from '../environments/environment';
+import { rendererAppName, rendererAppPort } from './constants';
 
 export default class App {
   // Keep a global reference of the window object, if you don't, the window will
@@ -19,7 +19,21 @@ export default class App {
     return isEnvironmentSet ? getFromEnvironment : !environment.production;
   }
 
-  private static onWindowAllClosed() {
+  static main(app: Electron.App, browserWindow: typeof BrowserWindow) {
+    // we pass the Electron.App object and the
+    // Electron.BrowserWindow into this function
+    // so this class has no dependencies. This
+    // makes the code easier to write tests for
+
+    App.BrowserWindow = browserWindow;
+    App.application = app;
+
+    App.application.on('window-all-closed', App.onWindowAllClosed); // Quit when all windows are closed.
+    App.application.on('ready', App.onReady); // App is ready to load data
+    App.application.on('activate', App.onActivate); // App is activated
+  }
+
+  private static onWindowAllClosed(): void {
     if (process.platform !== 'darwin') {
       App.application.quit();
     }
@@ -32,6 +46,7 @@ export default class App {
     App.mainWindow = null;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private static onRedirect(event: any, url: string) {
     if (url !== App.mainWindow.webContents.getURL()) {
       // this is a normal external redirect, open it in a new browser window
@@ -108,19 +123,5 @@ export default class App {
         })
       );
     }
-  }
-
-  static main(app: Electron.App, browserWindow: typeof BrowserWindow) {
-    // we pass the Electron.App object and the
-    // Electron.BrowserWindow into this function
-    // so this class has no dependencies. This
-    // makes the code easier to write tests for
-
-    App.BrowserWindow = browserWindow;
-    App.application = app;
-
-    App.application.on('window-all-closed', App.onWindowAllClosed); // Quit when all windows are closed.
-    App.application.on('ready', App.onReady); // App is ready to load data
-    App.application.on('activate', App.onActivate); // App is activated
   }
 }

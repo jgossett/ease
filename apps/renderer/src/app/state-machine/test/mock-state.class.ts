@@ -10,21 +10,27 @@ export class MockState extends State {
     super(undefined);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   focus(): void {
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   rest(): void {
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   pause(): void {
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   stop(): void {
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   completeInterval(): void {
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
   everySecond(remainingDuration: Duration): void {
   }
 }

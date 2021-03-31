@@ -15,6 +15,7 @@ jest.mock('../actions/stop-action.class');
 
 describe('RestState', () => {
   let target: RestState;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let targetAny: any;
   let timerMachine: TimerMachine;
   let timer: Timer;
@@ -26,6 +27,7 @@ describe('RestState', () => {
     timer = timerMachine.timer;
 
     target = new RestState(timerMachine);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     targetAny = target as any;
 
     pauseAction = new PauseAction(timerMachine);

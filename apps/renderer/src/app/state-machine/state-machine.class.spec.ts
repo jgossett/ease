@@ -8,6 +8,7 @@ jest.mock('./test/mock-state.class');
 
 describe('StateMachine', () => {
   let target: TimerMachine;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let targetAny: any;
   let stateInstance: State;
 
