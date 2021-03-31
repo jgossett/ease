@@ -1,4 +1,4 @@
-import {ErrorHandler} from '@angular/core';
+import { ErrorHandler } from '@angular/core';
 
 export class ApplicationErrorHandler implements ErrorHandler {
   handleError(thrown: any): void {
@@ -15,8 +15,8 @@ export class ApplicationErrorHandler implements ErrorHandler {
       message = thrown.toString();
     }
 
-    return 'An unhandled error has occurred.\n'
+    return 'An unhandled error has occurred.'
       + '\n'
-      + `  ${message}`;
+      + `\n  ${message}`;
   }
 }
