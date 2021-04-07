@@ -1,11 +1,11 @@
-# Setup - DRAFT
+# Setup
 
 This procedures will setup a computer to develop on the Ease application.
 
 ## Prerequisite
 
 - Windows 10
-- Chocolately. See https://chocolatey.org/install
+- Chocolatey. See https://chocolatey.org/install
 
 ## Instructions
 
@@ -13,7 +13,7 @@ This procedures will setup a computer to develop on the Ease application.
 
 1. Run **Windows Terminal** as Administrator.
 
-   > **NOTE:** We need to run Windows Terminal as Administrator since we will use Chocoletely to install applications. 
+   > **NOTE:** We need to run Windows Terminal as Administrator since we will use Chocolatey to install applications. 
 
 2. Install NodeJS.
 
@@ -72,9 +72,3 @@ $ choco install intellijidea-ultimate
 $ npm install
 $ npm start
 ```
-
-
-
-## Troubleshoot
-
-(none)
