@@ -1,33 +1,35 @@
-import SquirrelEvents from './app/events/squirrel.events';
+import { app } from 'electron';
+import 'reflect-metadata';
+import { ReflectiveInjector } from 'injection-js';
+import { EaseApplication } from './app/easeApplication.class';
 import ElectronEvents from './app/events/electron.events';
-import { app, BrowserWindow } from 'electron';
-import App from './app/app';
+import SquirrelEvents from './app/events/squirrel.events';
+import { Application } from './app/electron/application';
 
-export default class Main {
-  static initialize() {
-    if (SquirrelEvents.handleEvents()) {
-      // squirrel event handled (except first run event) and app will exit in 1000ms, so don't do anything else
-      app.quit();
-    }
+console.log(app.name);
+console.log(app.isPackaged);
+
+
+const injector = ReflectiveInjector.resolveAndCreate([
+  EaseApplication,
+  {
+    provide: Application,
+    useValue: app
   }
+]);
 
-  static bootstrapApp() {
-    App.main(app, BrowserWindow);
-  }
 
-  static bootstrapAppEvents() {
-    ElectronEvents.bootstrapElectronEvents();
+const easeApplication: EaseApplication = injector.get(EaseApplication);
 
-    // initialize auto updater service
-    if (!App.isDevelopmentMode()) {
-      // UpdateEvents.initAutoUpdateService();
-    }
-  }
+if (SquirrelEvents.handleEvents()) {
+  // squirrel event handled (except first run event) and app will exit in 1000ms, so don't do anything else
+  app.quit();
 }
 
-// handle setup events as quickly as possible
-Main.initialize();
+ElectronEvents.bootstrapElectronEvents();
 
-// bootstrap app
-Main.bootstrapApp();
-Main.bootstrapAppEvents();
+// initialize auto updater service
+// TODO: fix the auto updater.
+// if (!EaseApplicationClass.isDevelopmentMode()) {
+  // UpdateEvents.initAutoUpdateService();
+// }

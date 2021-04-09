@@ -1,7 +1,6 @@
 import { app, autoUpdater, dialog } from 'electron';
 import { platform, arch } from 'os';
 import { updateServerUrl } from '../constants';
-import App from '../app';
 
 export default class UpdateEvents {
   // initialize auto update service - most be invoked only in production
@@ -13,20 +12,22 @@ export default class UpdateEvents {
       url: `${updateServerUrl}/update/${platform_arch}/${version}`,
     };
 
-    if (!App.isDevelopmentMode()) {
-      console.log('Initializing auto update service...\n');
-
-      autoUpdater.setFeedURL(feed);
-      UpdateEvents.checkForUpdates();
-    }
+    // TODO: resolve.
+    // if (!EaseApplication.isDevelopmentMode()) {
+    //   console.log('Initializing auto update service...\n');
+    //
+    //   autoUpdater.setFeedURL(feed);
+    //   UpdateEvents.checkForUpdates();
+    // }
   }
 
+  // TODO: resolve.
   // check for updates - most be invoked after initAutoUpdateService() and only in production
-  static checkForUpdates() {
-    if (!App.isDevelopmentMode() && autoUpdater.getFeedURL() !== '') {
-      autoUpdater.checkForUpdates();
-    }
-  }
+  // static checkForUpdates() {
+  //   if (!EaseApplication.isDevelopmentMode() && autoUpdater.getFeedURL() !== '') {
+  //     autoUpdater.checkForUpdates();
+  //   }
+  // }
 }
 
 autoUpdater.on(
