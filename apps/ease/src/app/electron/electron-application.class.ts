@@ -2,7 +2,7 @@
 
 import { App } from 'electron';
 
-export abstract class Application implements App {
+export abstract class ElectronApplication implements App {
   abstract accessibilitySupportEnabled: boolean;
   abstract allowRendererProcessReuse: boolean;
   abstract applicationMenu: Electron.Menu | null;

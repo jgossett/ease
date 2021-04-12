@@ -1,23 +1,21 @@
 import { app } from 'electron';
-import 'reflect-metadata';
 import { ReflectiveInjector } from 'injection-js';
-import { EaseApplication } from './app/easeApplication.class';
+// required by injection-js.
+import 'reflect-metadata';
+import { EaseApplication } from './app/ease-application.class';
+import { ElectronApplication } from './app/electron/electron-application.class';
 import ElectronEvents from './app/events/electron.events';
 import SquirrelEvents from './app/events/squirrel.events';
-import { Application } from './app/electron/application';
-
-console.log(app.name);
-console.log(app.isPackaged);
-
+import { MainWindow } from './app/main-window.class';
 
 const injector = ReflectiveInjector.resolveAndCreate([
   EaseApplication,
+  MainWindow,
   {
-    provide: Application,
+    provide: ElectronApplication,
     useValue: app
   }
 ]);
-
 
 const easeApplication: EaseApplication = injector.get(EaseApplication);
 
@@ -31,5 +29,5 @@ ElectronEvents.bootstrapElectronEvents();
 // initialize auto updater service
 // TODO: fix the auto updater.
 // if (!EaseApplicationClass.isDevelopmentMode()) {
-  // UpdateEvents.initAutoUpdateService();
+// UpdateEvents.initAutoUpdateService();
 // }
