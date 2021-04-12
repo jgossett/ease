@@ -1,10 +1,10 @@
 import { Duration } from 'luxon';
 import { TimerMachine } from './state-machine.class';
 import { FocusState } from './states/focus-state.class';
+import { PauseState } from './states/pause-state.state';
 import { State } from './states/state.class';
-import { MockState } from './test/mock-state.class';
 
-jest.mock('./test/mock-state.class');
+jest.mock('./states/focus-state.class.ts')
 
 describe('StateMachine', () => {
   let target: TimerMachine;
@@ -15,9 +15,9 @@ describe('StateMachine', () => {
   beforeEach(() => {
     target = new TimerMachine();
     targetAny = target;
-    stateInstance = new MockState();
+    stateInstance = new FocusState(target);
     targetAny.stateInstance = stateInstance;
-    targetAny.stateClass = MockState;
+    targetAny.stateClass = FocusState;
   });
 
   it('should create', () => {
@@ -30,7 +30,7 @@ describe('StateMachine', () => {
     expect(target.remainingDuration)
       .toEqual(Duration.fromISOTime('00:25:00'));
     expect(targetAny.stateClass)
-      .toBe(MockState);
+      .toBe(FocusState);
     expect(targetAny.previousStateClass)
       .toBeUndefined();
   });
@@ -86,14 +86,14 @@ describe('StateMachine', () => {
 
   it('transition should set previousStateClass', () => {
     // Act
-    target.transition(FocusState);
+    target.transition(PauseState);
 
     // Assert
     expect(targetAny.previousStateClass)
-      .toBe(MockState);
-    expect(targetAny.stateClass)
       .toBe(FocusState);
+    expect(targetAny.stateClass)
+      .toBe(PauseState);
     expect(targetAny.stateInstance)
-      .toBeInstanceOf(FocusState);
+      .toBeInstanceOf(PauseState);
   });
 });
