@@ -1,34 +1,63 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "renderer",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
   "projects": {
-    "Ease": {
+    "renderer": {
       "projectType": "application",
-      "schematics": {},
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
+      "root": "apps/renderer",
+      "sourceRoot": "apps/renderer/src",
+      "prefix": "ease",
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "check-types"
+            ],
             "customWebpackConfig": {
               "path": "webpack.config.js"
             },
-            "outputPath": "dist/Ease",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/apps/renderer",
+            "index": "apps/renderer/src/index.html",
+            "main": "apps/renderer/src/main.ts",
+            "polyfills": "apps/renderer/src/polyfills.ts",
+            "tsConfig": "apps/renderer/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "apps/renderer/src/favicon.ico",
+              "apps/renderer/src/assets"
             ],
-            "styles": [
-              "src/styles.css"
-            ],
+            "styles": ["apps/renderer/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -40,7 +69,6 @@
                 }
               ]
             },
-
             "production": {
               "fileReplacements": [
                 {
@@ -73,73 +101,131 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "Ease:build"
+            "browserTarget": "renderer:build"
           },
           "configurations": {
-            "local": {
-              "browserTarget": "Ease:build:local"
-            },
             "production": {
-              "browserTarget": "Ease:build:production"
+              "browserTarget": "renderer:build:production"
             }
-          },
-          "customWebpackConfig": {
-            "path": "webpack.config.js"
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Ease:build"
+            "browserTarget": "renderer:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/renderer/src/**/*.ts",
+              "apps/renderer/src/**/*.html"
+            ]
           }
         },
         "test": {
-          "builder": "@angular-builders/custom-webpack:karma",
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/renderer"],
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": [],
-            "customWebpackConfig": {
-              "path": "webpack.config.js"
+            "jestConfig": "apps/renderer/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "renderer-e2e": {
+      "root": "apps/renderer-e2e",
+      "sourceRoot": "apps/renderer-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/renderer-e2e/cypress.json",
+            "tsConfig": "apps/renderer-e2e/tsconfig.e2e.json",
+            "devServerTarget": "renderer:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "renderer:serve:production"
             }
           }
         },
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "tsconfig.app.json",
-              "tsconfig.spec.json",
-              "e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "lintFilePatterns": ["apps/renderer-e2e/**/*.{js,ts}"]
           }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        }
+      }
+    },
+    "ease": {
+      "root": "apps/ease",
+      "sourceRoot": "apps/ease/src",
+      "projectType": "application",
+      "prefix": "ease",
+      "architect": {
+        "build": {
+          "builder": "nx-electron:build",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Ease:serve"
+            "outputPath": "dist/apps/ease",
+            "main": "apps/ease/src/main.ts",
+            "tsConfig": "apps/ease/tsconfig.app.json",
+            "assets": ["apps/ease/src/assets"]
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Ease:serve:production"
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/ease/src/environments/environment.ts",
+                  "with": "apps/ease/src/environments/environment.prod.ts"
+                }
+              ]
             }
+          }
+        },
+        "serve": {
+          "builder": "nx-electron:execute",
+          "options": {
+            "buildTarget": "ease:build"
+          }
+        },
+        "package": {
+          "builder": "nx-electron:package",
+          "options": {
+            "name": "ease",
+            "frontendProject": "renderer",
+            "outputPath": "dist/packages",
+            "prepackageOnly": true
+          }
+        },
+        "make": {
+          "builder": "nx-electron:make",
+          "options": {
+            "name": "ease",
+            "frontendProject": "renderer",
+            "outputPath": "dist/executables"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/ease/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/ease"],
+          "options": {
+            "jestConfig": "apps/ease/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
     }
-  },
-  "defaultProject": "Ease"
+  }
 }

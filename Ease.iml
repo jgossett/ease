@@ -3,6 +3,11 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/apps/ease" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/renderer" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/renderer-e2e" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/libs" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tools" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/dist" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
