@@ -29,7 +29,7 @@
     "serve:renderer": "nx serve renderer",
     "start": "npm run start:renderer",
     "start:ease": "nx serve ease --inspect=inspect",
-    "start:renderer": "nx serve",
+    "start:renderer": "nx serve --configuration=local",
     "test": "ng test",
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator"
