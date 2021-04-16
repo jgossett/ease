@@ -49,6 +49,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "browser-bunyan": "^1.6.3",
     "bunyan": "^1.8.15",
     "bunyan-debug-stream": "^2.0.0",
     "bunyan-prettystream": "^0.1.3",
