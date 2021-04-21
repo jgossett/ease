@@ -5,7 +5,6 @@
 import { app } from 'electron';
 import { spawn } from 'child_process';
 import { resolve, join, basename } from 'path';
-import { environment } from '../../environments/environment';
 
 export default class SquirrelEvents {
   private static isAppFirstRun = false;
@@ -19,7 +18,7 @@ export default class SquirrelEvents {
   private static exeName = resolve(
     join(
       SquirrelEvents.appRootFolder,
-      'app-' + environment.version,
+      // 'app-' + environment.version,
       basename(process.execPath)
     )
   );

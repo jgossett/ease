@@ -6,6 +6,8 @@ import { Provider } from 'injection-js/provider';
 import { EaseApplication } from './app/ease-application.class';
 import { ElectronApplication } from './app/electron/electron-application.class';
 import { MainWindow } from './app/main-window.class';
+import { Settings } from './environments/settings.class';
+import { settings } from './environments/settings.value';
 import { LoggerFactory } from './logger-factory.class';
 
 export class InjectorFactory {
@@ -21,13 +23,19 @@ export class InjectorFactory {
       MainWindow,
       {
         provide: ElectronApplication,
-        useValue: app
+        useValue: app,
       },
 
       // logger
       {
         provide: Logger,
-        useFactory: () => this.loggerFactory.build()
+        useFactory: () => this.loggerFactory.build(),
+      },
+
+      // settings
+      {
+        provide: Settings,
+        useValue: settings,
       }
     ];
 

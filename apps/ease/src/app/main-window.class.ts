@@ -1,7 +1,9 @@
+import { Environment } from '@ease/environment';
 import * as Logger from 'bunyan';
 import { BrowserWindow, Display, screen } from 'electron';
 import { Injectable } from 'injection-js';
 import { join } from 'path';
+import { Settings } from '../environments/settings.class';
 import { rendererAppName, rendererAppUrl } from './constants';
 import { ElectronApplication } from './electron/electron-application.class';
 
@@ -10,7 +12,7 @@ export class MainWindow {
   private readonly preloadPath = join(__dirname, 'preload.js');
   private browserWindow: BrowserWindow;
 
-  constructor(private electronApplication: ElectronApplication, private logger: Logger) {
+  constructor(private electronApplication: ElectronApplication, private logger: Logger, private settings: Settings) {
   }
 
   async show(): Promise<void> {

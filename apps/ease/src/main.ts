@@ -7,7 +7,7 @@ import ElectronEvents from './app/events/electron.events';
 import SquirrelEvents from './app/events/squirrel.events';
 import { InjectorFactory } from './injector-factory.class';
 
-const injectorFactory = new InjectorFactory()
+const injectorFactory = new InjectorFactory();
 const injector = injectorFactory.build();
 
 const logger = injector.get(Logger);

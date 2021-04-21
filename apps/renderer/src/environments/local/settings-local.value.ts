@@ -1,5 +1,5 @@
 import { Duration } from 'luxon';
-import { Environment } from '../environment.enum';
+import { Environment } from '../../../../../libs/environment/src';
 import { Settings } from '../settings.interface';
 import { settingsDefault } from '../settings-default.value';
 
