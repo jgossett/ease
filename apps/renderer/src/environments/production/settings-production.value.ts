@@ -1,4 +1,4 @@
-import { Environment } from '../../../../../libs/environment/src';
+import { Environment } from '@ease/environment';
 import { settingsDefault } from '../settings-default.value';
 import { Settings } from '../settings.interface';
 

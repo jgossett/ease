@@ -1,4 +1,4 @@
-import { Environment } from '../../../../libs/environment/src';
+import { Environment } from '@ease/environment';
 import { Duration } from 'luxon';
 
 export interface Settings {
