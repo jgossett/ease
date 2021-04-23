@@ -217,7 +217,10 @@
           "options": {
             "name": "ease",
             "frontendProject": "renderer",
-            "outputPath": "dist/executables"
+            "outputPath": "dist/executables",
+            "platform": "windows",
+            "arch": "x64",
+            "publishPolicy": "never"
           }
         },
         "lint": {

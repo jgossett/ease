@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run" type="CompoundRunConfigurationType">
-    <toRun name="Run Web Application" type="js.build_tools.npm" />
-    <toRun name="Run Desktop Application" type="js.build_tools.npm" />
+  <configuration default="false" name="Serve" type="CompoundRunConfigurationType">
+    <toRun name="Serve Desktop Application" type="js.build_tools.npm" />
+    <toRun name="Serve Web Application" type="js.build_tools.npm" />
     <method v="2" />
   </configuration>
 </component>
