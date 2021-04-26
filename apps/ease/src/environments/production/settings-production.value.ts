@@ -5,5 +5,6 @@ import { settings as settingsDefault } from '../settings.value';
 export const settings: Settings = {
   ...settingsDefault,
 
-  environment: Environment.Production
+  environment: Environment.Production,
+  rendererApplicationUrl: undefined,
 };

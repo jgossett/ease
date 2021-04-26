@@ -2,7 +2,7 @@ import * as Logger from 'bunyan';
 import { BrowserWindow, Display, screen } from 'electron';
 import { Injectable } from 'injection-js';
 import { join } from 'path';
-import { rendererAppName, rendererAppUrl } from './constants';
+import { Settings } from '../environments/settings.class';
 import { ElectronApplication } from './electron/electron-application.class';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class MainWindow {
   private readonly preloadPath = join(__dirname, 'preload.js');
   private browserWindow: BrowserWindow;
 
-  constructor(private electronApplication: ElectronApplication, private logger: Logger) {
+  constructor(private electronApplication: ElectronApplication, private logger: Logger, private settings: Settings) {
   }
 
   async show(): Promise<void> {
@@ -37,13 +37,13 @@ export class MainWindow {
     if (!this.electronApplication.isPackaged) {
       try {
         this.logger.debug('Started to navigate the Main window.');
-        await this.browserWindow.loadURL(rendererAppUrl);
+        await this.browserWindow.loadURL(this.settings.rendererApplicationUrl);
         return;
       } catch (error) {
-        this.logger.fatal(`Could not navigate to "${rendererAppUrl}. Verify "nx serve" is started.`, error);
+        this.logger.fatal(`Could not navigate to "${this.settings.rendererApplicationUrl}. Verify "nx serve" is started.`, error);
       }
     } else {
-      const indexPath = join(__dirname, '..', rendererAppName, 'index.html');
+      const indexPath = join(__dirname, '..', this.settings.rendererApplicationName, 'index.html');
       return this.browserWindow.loadFile(indexPath);
     }
   }
