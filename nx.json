@@ -18,6 +18,7 @@
   "projects": {
     "renderer": { "tags": [] },
     "renderer-e2e": { "tags": [], "implicitDependencies": ["renderer"] },
-    "ease": { "tags": [] }
+    "ease": { "tags": [], "implicitDependencies": ["renderer"] },
+    "environment": { "tags": [] }
   }
 }

@@ -1,5 +1,5 @@
+import { Environment } from '@ease/environment';
 import { Duration } from 'luxon';
-import { Environment } from './environment.enum';
 
 export interface Settings {
   readonly environment: Environment;

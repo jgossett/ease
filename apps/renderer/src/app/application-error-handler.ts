@@ -1,9 +1,17 @@
-import { ErrorHandler } from '@angular/core';
+import { ErrorHandler, Injectable } from '@angular/core';
+import { Logger } from '../logger/logger.class';
 
+@Injectable({
+  providedIn: 'root'
+})
 export class ApplicationErrorHandler implements ErrorHandler {
+  constructor(private logger: Logger) {
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   handleError(thrown: any): void {
+    this.logger.error('Encountered an unhandled thrown exception.', thrown);
+
     const message = this.format(thrown);
     alert(message);
   }

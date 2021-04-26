@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { faPlayCircle, faRedo, faEllipsisV, faPause, faCircle, faStop } from '@fortawesome/free-solid-svg-icons';
 import { faCircle as farCircle } from '@fortawesome/free-regular-svg-icons';
+import { Logger } from '../logger/logger.class';
 import { TimerMachine } from './state-machine/state-machine.class';
 
 @Component({
@@ -18,6 +19,9 @@ export class AppComponent {
   readonly fasStop = faStop;
 
   private timerMachine = new TimerMachine();
+
+  constructor(private logger: Logger) {
+  }
 
   get minutes(): number {
     return this.timerMachine.remainingDuration.minutes;
@@ -44,7 +48,7 @@ export class AppComponent {
   }
 
   onShowSettingMenu(): void {
-    alert('onShowSettingMenu was clicked.');
+    this.logger.info('onShowSettingMenu was clicked.');
   }
 
   onStart(): void {

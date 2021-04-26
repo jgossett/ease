@@ -17,6 +17,25 @@
         "@angular-eslint/component-selector": [
           "error",
           { "type": "element", "prefix": "ease", "style": "kebab-case" }
+        ],
+        "no-restricted-imports": [
+          "error",
+          {
+            "name": "lodash",
+            "message": "Import the \"lodash-es\" module. This module allows Typescript compiler to tree shake the lodash-es module."
+          },
+          {
+            "name": "injection-js",
+            "message": "Import the \"angular-core\" module. The \"injection-js\" module does not support the browser."
+          },
+          {
+            "name": "node",
+            "message": "Do not import \"node\" module."
+          },
+          {
+            "name": "brayon",
+            "message": "Import the \"browser-brayon\" module. The \"brayon\" module does not support the browser."
+          }
         ]
       }
     },
