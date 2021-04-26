@@ -5,7 +5,19 @@
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
       "parserOptions": { "project": ["apps/ease/tsconfig.*?.json"] },
-      "rules": {}
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "name": "@angular/core",
+            "message": "Import the \"injection-js\" module. The \"@angular/core\" module does not is not intended to be in a node application."
+          },
+          {
+            "name": "browser-bunyan",
+            "message": "Import the \"brayan\" module. The \"browser-bunyan\" module is not intended to be used in a node application."
+          }
+        ]
+      }
     },
     { "files": ["*.ts", "*.tsx"], "rules": {} },
     { "files": ["*.js", "*.jsx"], "rules": {} }

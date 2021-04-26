@@ -1,6 +1,5 @@
 import { app, autoUpdater, dialog } from 'electron';
 import { platform, arch } from 'os';
-import { updateServerUrl } from '../constants';
 
 export default class UpdateEvents {
   // initialize auto update service - most be invoked only in production
@@ -8,9 +7,10 @@ export default class UpdateEvents {
     const platform_arch =
       platform() === 'win32' ? platform() : platform() + '_' + arch();
     const version = app.getVersion();
-    const feed: Electron.FeedURLOptions = {
-      url: `${updateServerUrl}/update/${platform_arch}/${version}`,
-    };
+    // TODO: Implement updates.
+    // const feed: Electron.FeedURLOptions = {
+    //   url: `${updateServerUrl}/update/${platform_arch}/${version}`,
+    // };
 
     // TODO: resolve.
     // if (!EaseApplication.isDevelopmentMode()) {
