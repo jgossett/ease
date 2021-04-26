@@ -1,0 +1,9 @@
+{
+  "name": "ease",
+  "description": "A gorgeous pomodoro timer.",
+  "version": "0.0.1",
+  "author": "Joshua Gosset",
+  "license": "MIT",
+  "scripts": {},
+  "private": true
+}

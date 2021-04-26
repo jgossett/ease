@@ -14,6 +14,7 @@ const logger = injector.get(Logger);
 
 try {
   const easeApplication: EaseApplication = injector.get(EaseApplication);
+  logger.info("Desktop application started.");
 
   if (SquirrelEvents.handleEvents()) {
     // squirrel event handled (except first run event) and app will exit in 1000ms, so don't do anything else
@@ -30,3 +31,5 @@ try {
 } catch (error) {
   logger.fatal('An unhandled exception occurred. Must exit the application.', error);
 }
+
+logger.info("Desktop application ended.");

@@ -174,7 +174,8 @@
             "main": "apps/ease/src/main.ts",
             "tsConfig": "apps/ease/tsconfig.app.json",
             "assets": ["apps/ease/src/assets"],
-            "verbose": true
+            "verbose": true,
+            "externalDependencies": "none"
           },
           "configurations": {
             "local": {
