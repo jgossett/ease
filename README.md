@@ -10,10 +10,22 @@ Ease is beautiful Pomodoro Timer for Windows.
 
 ## Usage
 
+- Build Web Application
+
+  ```bash
+  npm run build:renderer
+  ```
+
+- Build Desktop Application
+
+  ``` bash
+  npm run build:ease
+  ```
+  
 - Build Installer
 
   ```bash
-  npm run make
+  npm run build:installer
   ```
 
 ## Download

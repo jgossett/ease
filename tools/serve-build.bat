@@ -1,5 +1,5 @@
 ECHO off
-SET EASE_PATH=dist\executables\win-unpacked\Ease.exe
+SET EASE_PATH=dist\packages\win-unpacked\Ease.exe
 
 :: Verify the ease application exists.
 IF NOT EXIST %EASE_PATH% (

@@ -174,7 +174,6 @@
             "main": "apps/ease/src/main.ts",
             "tsConfig": "apps/ease/tsconfig.app.json",
             "assets": ["apps/ease/src/assets"],
-            "verbose": true,
             "externalDependencies": "none"
           },
           "configurations": {
@@ -222,8 +221,7 @@
             "outputPath": "dist/executables",
             "platform": "windows",
             "arch": "x64",
-            "publishPolicy": "never",
-            "prepackageOnly": true
+            "publishPolicy": "never"
           }
         },
         "lint": {
