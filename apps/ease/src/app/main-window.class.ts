@@ -36,8 +36,9 @@ export class MainWindow {
   private async navigate(): Promise<void> {
     if (!this.electronApplication.isPackaged) {
       try {
-        this.logger.debug('Started to navigate the Main window.');
+        this.logger.debug('The main window has started to navigate to renderer application.');
         await this.browserWindow.loadURL(this.settings.rendererApplicationUrl);
+        this.logger.debug('The main window has navigated to renderer application.')
         return;
       } catch (error) {
         this.logger.fatal(`Could not navigate to "${this.settings.rendererApplicationUrl}. Verify "nx serve" is started.`, error);

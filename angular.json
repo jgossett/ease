@@ -218,7 +218,7 @@
           "options": {
             "name": "ease",
             "frontendProject": "renderer",
-            "outputPath": "dist/executables",
+            "outputPath": "dist/installer",
             "platform": "windows",
             "arch": "x64",
             "publishPolicy": "never"
