@@ -13,7 +13,11 @@ const injector = injectorFactory.build();
 const logger = injector.get(Logger);
 
 try {
-  const easeApplication: EaseApplication = injector.get(EaseApplication);
+  logger.info("The desktop application has started.");
+
+  // creates the Ease application.
+  const easeApplication = injector.get(EaseApplication);
+  easeApplication.initialize();
 
   if (SquirrelEvents.handleEvents()) {
     // squirrel event handled (except first run event) and app will exit in 1000ms, so don't do anything else
@@ -28,5 +32,8 @@ try {
 // UpdateEvents.initAutoUpdateService();
 // }
 } catch (error) {
-  logger.fatal('An unhandled exception occurred. Must exit the application.', error);
+  logger.fatal('Could not load the desktop application.', error);
+  throw error;
 }
+
+logger.info('The desktop application has loaded.');
